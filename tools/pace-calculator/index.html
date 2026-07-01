@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <title>Pace Calculator | Hybrid Performance Coaching</title>
+  <meta name="description" content="Calculate target pace per km and per mile for a 5K, 10K, half or marathon from a goal time." />
+  <meta property="og:title" content="Pace Calculator | Hybrid Performance Coaching" />
+  <meta property="og:description" content="Calculate target pace per km and per mile for a 5K, 10K, half or marathon from a goal time." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://hybridperformancecoaching.co.uk/assets/og-image.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="canonical" href="https://hybridperformancecoaching.co.uk/pages/tools.html" />
+</head>
+<body data-page="tools">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Free Tool</span>
+        <h1>Pace Calculator</h1>
+        <p>Set a goal finish time and distance, and get the pace you need to hold.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="tool-shell">
+          <div class="card">
+            <div class="form">
+              <div class="field">
+                <label for="distance">Distance</label>
+                <select id="distance">
+                  <option value="5">5K</option>
+                  <option value="10">10K</option>
+                  <option value="21.0975">Half marathon</option>
+                  <option value="42.195">Marathon</option>
+                  <option value="custom">Custom (km)</option>
+                </select>
+              </div>
+              <div class="field" id="custom-wrap" hidden>
+                <label for="custom-km">Custom distance (km)</label>
+                <input id="custom-km" type="number" min="0.1" step="0.1" inputmode="decimal" placeholder="e.g. 7.5" />
+              </div>
+              <div class="field">
+                <label>Goal finish time</label>
+                <div class="field-row" style="grid-template-columns:1fr 1fr 1fr">
+                  <input id="hh" type="number" min="0" max="20" inputmode="numeric" placeholder="hh" aria-label="hours" />
+                  <input id="mm" type="number" min="0" max="59" inputmode="numeric" placeholder="mm" aria-label="minutes" />
+                  <input id="ss" type="number" min="0" max="59" inputmode="numeric" placeholder="ss" aria-label="seconds" />
+                </div>
+                <span class="hint small">Leave hours blank for shorter runs. 5K in 25:00 = mm 25.</span>
+              </div>
+              <button class="btn btn--primary btn--block" id="calc-btn" type="button">Calculate pace</button>
+              <p class="form-note" id="calc-error" style="color:#c0392b;display:none"></p>
+            </div>
+          </div>
+
+          <div class="tool-output" aria-live="polite">
+            <span class="eyebrow">Your target</span>
+            <div class="result-row"><span class="k">Pace / km</span><span class="v" id="r-km">—</span></div>
+            <div class="result-row"><span class="k">Pace / mile</span><span class="v" id="r-mi">—</span></div>
+            <div class="result-row"><span class="k">Speed</span><span class="v" id="r-speed">—</span></div>
+            <div class="result-row"><span class="k">Halfway split</span><span class="v" id="r-half">—</span></div>
+            <p class="form-note" id="r-note" style="margin-top:1rem">Enter a goal time above to see your target pace and splits.</p>
+          </div>
+        </div>
+
+        <hr class="divider" />
+        <div class="btn-row">
+          <a class="btn btn--ghost" href="/tools/">← All tools</a>
+          <a class="btn btn--primary" href="/coaching/#apply">Build this into a plan</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="/js/main.js"></script>
+  <script>
+    (function () {
+      var distance = document.getElementById("distance");
+      var customWrap = document.getElementById("custom-wrap");
+      var customKm = document.getElementById("custom-km");
+      var hh = document.getElementById("hh"), mm = document.getElementById("mm"), ss = document.getElementById("ss");
+      var btn = document.getElementById("calc-btn");
+      var err = document.getElementById("calc-error");
+      var KM_PER_MILE = 1.609344;
+
+      distance.addEventListener("change", function () {
+        var custom = distance.value === "custom";
+        customWrap.hidden = !custom;
+        if (custom) customKm.focus();
+      });
+
+      function fmt(t) {
+        t = Math.round(t);
+        var h = Math.floor(t / 3600), m = Math.floor((t % 3600) / 60), s = t % 60;
+        var pad = function (n) { return String(n).padStart(2, "0"); };
+        return h > 0 ? h + ":" + pad(m) + ":" + pad(s) : m + ":" + pad(s);
+      }
+      function setOut(id, main, unit) {
+        document.getElementById(id).innerHTML = main + (unit ? ' <span class="u">' + unit + "</span>" : "");
+      }
+
+      btn.addEventListener("click", function () {
+        err.style.display = "none";
+        var km = distance.value === "custom" ? parseFloat(customKm.value) : parseFloat(distance.value);
+        if (!km || km <= 0) { err.textContent = "Enter a valid distance."; err.style.display = "block"; return; }
+        var total = (parseInt(hh.value,10)||0)*3600 + (parseInt(mm.value,10)||0)*60 + (parseInt(ss.value,10)||0);
+        if (total <= 0) { err.textContent = "Enter a goal finish time."; err.style.display = "block"; return; }
+
+        var perKm = total / km;
+        setOut("r-km", fmt(perKm), "/km");
+        setOut("r-mi", fmt(perKm * KM_PER_MILE), "/mi");
+        setOut("r-speed", (km / (total/3600)).toFixed(1), "km/h");
+        var halfKm = km / 2;
+        var label = Number.isInteger(halfKm) ? halfKm : halfKm.toFixed(2).replace(/\.?0+$/,"");
+        setOut("r-half", fmt(total/2), "at " + label + "km");
+      });
+    })();
+  </script>
+</body>
+</html>

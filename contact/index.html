@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <title>Contact | Hybrid Performance Coaching</title>
+  <meta name="description" content="Get in touch about coaching, training plans, tools or a general question." />
+  <meta property="og:title" content="Contact | Hybrid Performance Coaching" />
+  <meta property="og:description" content="Get in touch about coaching, training plans, tools or a general question." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://hybridperformancecoaching.co.uk/assets/og-image.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="canonical" href="https://hybridperformancecoaching.co.uk/contact/" />
+</head>
+<body data-page="contact">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Contact</span>
+        <h1>Got a question? Send it over.</h1>
+        <p>Coaching, plans, tools or just figuring out where to start, happy to point you in the right direction.</p>
+      </div>
+    </section>
+
+    <section class="section band">
+      <div class="container">
+        <div class="grid grid-2" style="align-items:start">
+          <div>
+            <div class="form-success" id="contact-success" role="status">Thanks, your message has been sent. I'll get back to you soon.</div>
+            <form class="form card" id="contact-form" novalidate>
+              <div class="field-row">
+                <div class="field"><label for="c-name">Name</label><input id="c-name" name="name" type="text" autocomplete="name" required /></div>
+                <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" autocomplete="email" required /></div>
+              </div>
+              <div class="field">
+                <label for="c-interest">I'm interested in</label>
+                <select id="c-interest" name="interest" required>
+                  <option value="">Select…</option>
+                  <option>Coaching</option><option>Training plans</option><option>Free tools</option><option>General question</option>
+                </select>
+              </div>
+              <div class="field"><label for="c-goal">Main goal <span class="hint">(optional)</span></label><input id="c-goal" name="goal" type="text" placeholder="e.g. first 10K while keeping my strength" /></div>
+              <div class="field"><label for="c-message">Message</label><textarea id="c-message" name="message" required placeholder="What would you like to know?"></textarea></div>
+              <p class="form-note" style="margin-top:0.4rem">By submitting this form your details are sent via Formspree to respond to your message. See our <a href="/privacy/" style="color:var(--accent)">Privacy Policy</a>.</p>
+              <button class="btn btn--primary btn--block" type="submit">Send message</button>
+            </form>
+          </div>
+
+          <div>
+            <div class="card">
+              <h3 style="margin-bottom:0.6rem">Other ways to reach me</h3>
+              <ul class="ticks">
+                <li>Instagram: <a href="https://instagram.com/louis_endurancetraining" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">follow me here</a></li>
+                <li>Strava: <a href="https://www.strava.com/athletes/5388808" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">follow my training</a></li>
+                <li>Email: <a href="mailto:louistucker@live.co.uk" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">louistucker@live.co.uk</a></li>
+              </ul>
+            </div>
+            <div class="card" style="margin-top:1rem">
+              <h3 style="margin-bottom:0.5rem">Prefer to just start?</h3>
+              <p class="muted small">You don't have to talk to me first. Try a free tool, or register interest for coaching.</p>
+              <div class="btn-row" style="margin-top:0.9rem">
+                <a class="btn btn--ghost btn--sm" href="/tools/">Free tools</a>
+                <a class="btn btn--primary btn--sm" href="/coaching/#apply">Coaching</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="/js/main.js"></script>
+  <script src="/js/forms.js"></script>
+</body>
+</html>

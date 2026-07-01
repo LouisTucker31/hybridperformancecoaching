@@ -2,94 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
-  <link rel="icon" type="image/png" href="../assets/favicon.png" />
-  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
-  <title>Garmin / Strava Prompt | Hybrid Performance Coaching</title>
-  <meta name="description" content="A copy-paste prompt to help you review your Garmin or Strava training data with any AI assistant." />
-  <meta property="og:title" content="Garmin / Strava Prompt | Hybrid Performance Coaching" />
-  <meta property="og:description" content="A copy-paste prompt to help you review your Garmin or Strava training data with any AI assistant." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://hybridperformancecoaching.co.uk/assets/og-image.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="canonical" href="https://hybridperformancecoaching.co.uk/pages/coaching.html" />
+  <meta http-equiv="refresh" content="0; url=https://hybridperformancecoaching.co.uk/tools/strava-prompt/" />
+  <link rel="canonical" href="https://hybridperformancecoaching.co.uk/tools/strava-prompt/" />
+  <title>Redirecting…</title>
 </head>
-<body data-page="tools">
-  <div id="site-header"></div>
-
-  <main id="main">
-    <section class="page-hero">
-      <div class="container">
-        <span class="eyebrow">Free Tool</span>
-        <h1>Garmin / Strava Analysis Prompt</h1>
-        <p>Copy this prompt, paste your recent training data underneath it, and any AI assistant will give you a useful review.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container" style="max-width:760px">
-        <div class="card">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:0.8rem">
-            <h3>The prompt</h3>
-            <button class="btn btn--primary btn--sm" id="copy-btn" type="button" style="min-height:38px;padding:0.45rem 0.9rem">Copy prompt</button>
-          </div>
-          <div class="prompt-box" id="prompt">You are an experienced endurance and strength coach. I am going to give you my recent training data from Garmin or Strava. Please review it and give me a clear, practical summary.
-
-Cover these points:
-1. What stands out across the week, good and bad.
-2. Whether my easy sessions were actually easy and my hard sessions actually hard.
-3. Any signs of doing too much, too little, or always training at the same intensity.
-4. How the balance between running, cycling and strength looks.
-5. Three specific, realistic things to adjust next week.
-
-Keep it concise and avoid jargon. If something is missing that you would need to judge properly, tell me what to add.
-
-Here is my data:
-[ paste your sessions here: date, type, distance or duration, average pace or power, heart rate, and how it felt ]</div>
-        </div>
-
-        <hr class="divider" />
-        <div class="card">
-          <h3 style="margin-bottom:0.6rem">How to use it</h3>
-          <ul class="ticks">
-            <li>Tap copy, then open your AI assistant of choice.</li>
-            <li>Paste the prompt, then add your last week or two of sessions where shown.</li>
-            <li>Export from Strava or read figures straight off Garmin Connect, whatever is quicker.</li>
-            <li>Treat the output as a second opinion, not a training prescription.</li>
-          </ul>
-        </div>
-
-        <div class="btn-row" style="margin-top:1.5rem">
-          <a class="btn btn--ghost" href="../pages/tools.html">← All tools</a>
-          <a class="btn btn--primary" href="../pages/coaching.html#apply">Want a real review?</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <div id="site-footer"></div>
-  <script src="../js/main.js"></script>
-  <script>
-    (function () {
-      var btn = document.getElementById("copy-btn");
-      var text = document.getElementById("prompt").innerText;
-      btn.addEventListener("click", function () {
-        function ok() { btn.textContent = "Copied"; setTimeout(function(){ btn.textContent = "Copy prompt"; }, 1600); }
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(ok).catch(fallback);
-        } else { fallback(); }
-        function fallback() {
-          var ta = document.createElement("textarea");
-          ta.value = text; document.body.appendChild(ta); ta.select();
-          try { document.execCommand("copy"); ok(); } catch (e) {}
-          document.body.removeChild(ta);
-        }
-      });
-    })();
-  </script>
+<body>
+  <p>This page has moved. <a href="https://hybridperformancecoaching.co.uk/tools/strava-prompt/">Continue to the new page</a>.</p>
 </body>
 </html>

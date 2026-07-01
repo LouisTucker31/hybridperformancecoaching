@@ -6,25 +6,22 @@
 (function () {
   "use strict";
 
-  var inSub = /\/(pages|tools)\//.test(window.location.pathname);
-  var ROOT = inSub ? "../" : "";
-
   var headerHTML = `
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="container">
     <nav class="nav" aria-label="Primary">
-      <a class="brand" href="{{root}}index.html">Hybrid Performance<span>.</span></a>
+      <a class="brand" href="/">Hybrid Performance<span>.</span></a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="nav-links">
-        <li><a href="{{root}}index.html" data-page="home">Home</a></li>
-        <li><a href="{{root}}pages/about.html" data-page="about">About</a></li>
-        <li><a href="{{root}}pages/coaching.html" data-page="coaching">Coaching</a></li>
-        <li><a href="{{root}}pages/plans.html" data-page="plans">Plans</a></li>
-        <li><a href="{{root}}pages/tools.html" data-page="tools">Free Tools</a></li>
-        <li><a href="{{root}}pages/contact.html" data-page="contact">Contact</a></li>
+        <li><a href="/" data-page="home">Home</a></li>
+        <li><a href="/about/" data-page="about">About</a></li>
+        <li><a href="/coaching/" data-page="coaching">Coaching</a></li>
+        <li><a href="/plans/" data-page="plans">Plans</a></li>
+        <li><a href="/tools/" data-page="tools">Free Tools</a></li>
+        <li><a href="/contact/" data-page="contact">Contact</a></li>
       </ul>
     </nav>
   </div>
@@ -34,14 +31,14 @@
 <footer class="site-footer">
   <div class="container footer-inner">
     <ul class="footer-nav">
-      <li><a href="{{root}}index.html">Home</a></li>
-      <li><a href="{{root}}pages/about.html">About</a></li>
-      <li><a href="{{root}}pages/coaching.html">Coaching</a></li>
-      <li><a href="{{root}}pages/plans.html">Plans</a></li>
-      <li><a href="{{root}}pages/tools.html">Free Tools</a></li>
-      <li><a href="{{root}}pages/contact.html">Contact</a></li>
-      <li><a href="{{root}}pages/privacy.html">Privacy Policy</a></li>
-      <li><a href="{{root}}pages/terms.html">Terms of Service</a></li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/coaching/">Coaching</a></li>
+      <li><a href="/plans/">Plans</a></li>
+      <li><a href="/tools/">Free Tools</a></li>
+      <li><a href="/contact/">Contact</a></li>
+      <li><a href="/privacy/">Privacy Policy</a></li>
+      <li><a href="/terms/">Terms of Service</a></li>
     </ul>
     <span class="footer-meta">&copy; <span data-year></span> Hybrid Performance Coaching</span>
   </div>
@@ -49,7 +46,7 @@
 
   function inject(id, html) {
     var el = document.getElementById(id);
-    if (el) el.innerHTML = html.replace(/\{\{root\}\}/g, ROOT);
+    if (el) el.innerHTML = html;
   }
   inject("site-header", headerHTML);
   inject("site-footer", footerHTML);
