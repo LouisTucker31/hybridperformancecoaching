@@ -41,6 +41,7 @@
       <li><a href="{{root}}pages/tools.html">Free Tools</a></li>
       <li><a href="{{root}}pages/contact.html">Contact</a></li>
       <li><a href="{{root}}pages/privacy.html">Privacy Policy</a></li>
+      <li><a href="{{root}}pages/terms.html">Terms of Service</a></li>
     </ul>
     <span class="footer-meta">&copy; <span data-year></span> Hybrid Performance Coaching</span>
   </div>
