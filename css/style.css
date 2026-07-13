@@ -305,6 +305,23 @@ main { flex: 1; }
 .faq-item[open] summary::after { transform: rotate(45deg); }
 .faq-item p { padding-bottom: 1rem; color: var(--ink-soft); font-size: var(--fs-base); }
 
+/* ---------- FAQ ---------- */
+.faq-item { border-top: 1px solid var(--line); }
+.faq-item:last-child { border-bottom: 1px solid var(--line); }
+.faq-item summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1rem 0; cursor: pointer; list-style: none;
+  font-weight: 600; font-size: var(--fs-md); color: var(--ink);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::marker { content: ""; }
+.faq-item summary::after {
+  content: "+"; font-size: var(--fs-lg); color: var(--accent); flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item p { padding-bottom: 1rem; color: var(--ink-soft); font-size: var(--fs-base); }
+
 /* ---------- Forms ---------- */
 .form { display: grid; gap: 0.9rem; }
 .field { display: grid; gap: 0.3rem; }
