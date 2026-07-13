@@ -45,8 +45,8 @@ Push the folder, then Settings → Pages → deploy from `main`, root. All paths
 relative so it works from a project subpath.
 
 ## Before going live
-- [ ] Add real Instagram / Strava links (contact page)
-- [ ] Wire up the forms (`js/forms.js`)
-- [ ] Add a real email address
-- [ ] Add a favicon
+- [x] Add real Instagram / Strava links (contact page)
+- [x] Wire up the forms (`js/forms.js`)
+- [x] Add a real email address
+- [x] Add a favicon
 ```
