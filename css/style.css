@@ -405,10 +405,15 @@ main { flex: 1; }
   .about-media__photo { min-height: 220px; order: -1; }
 }
 
-/* ---------- Testimonial ---------- */
-.testimonial { max-width: 620px; margin-inline: auto; text-align: center; }
-.testimonial blockquote {
+/* ---------- Quote block ---------- */
+.quote-block {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  max-width: 620px; margin: 0 auto;
+}
+.quote-block blockquote {
   font-size: var(--fs-lg); line-height: 1.5; font-weight: 500;
   color: var(--ink); margin: 0 0 0.9rem;
 }
-.testimonial__who { display: block; width: 100%; font-size: var(--fs-sm); color: var(--ink-soft); text-align: center; margin: 0; }
+.quote-block cite {
+  font-size: var(--fs-sm); color: var(--ink-soft); font-style: normal;
+}
