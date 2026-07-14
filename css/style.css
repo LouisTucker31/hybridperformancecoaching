@@ -269,6 +269,8 @@ main { flex: 1; }
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 .plan-row:hover { border-color: #27855f; box-shadow: 0 0 0 1px #27855f, var(--shadow); }
+.plan-row--soon { background: var(--bg-soft); opacity: 0.7; }
+.plan-row--soon:hover { border-color: var(--line); box-shadow: var(--shadow-sm); }
 .plan-row__meta { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.3rem; flex-wrap: wrap; }
 .plan-row h3 { font-size: var(--fs-md); }
 .plan-row p { font-size: var(--fs-sm); color: var(--ink-soft); margin-top: 0.15rem; }
