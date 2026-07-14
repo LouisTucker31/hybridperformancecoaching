@@ -419,3 +419,76 @@ main { flex: 1; }
 .quote-block cite {
   font-size: var(--fs-sm); color: var(--ink-soft); font-style: normal;
 }
+
+
+/* ---------- Plan Finder ---------- */
+.finder { max-width: 640px; margin-inline: auto; }
+.finder-progress {
+  display: flex; align-items: center; gap: 0.5rem; justify-content: center;
+  margin-bottom: 1.5rem; font-size: var(--fs-xs); font-weight: 600;
+  letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-faint);
+}
+.finder-progress__bar {
+  flex: 1; max-width: 200px; height: 4px; border-radius: var(--radius-pill);
+  background: var(--line); overflow: hidden;
+}
+.finder-progress__fill {
+  height: 100%; background: var(--accent); border-radius: var(--radius-pill);
+  transition: width 0.25s ease;
+}
+
+.finder-stage { position: relative; overflow: hidden; }
+.finder-question {
+  animation: finder-in 0.28s ease;
+}
+.finder-question.is-leaving {
+  animation: finder-out 0.2s ease forwards;
+}
+@keyframes finder-in {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes finder-out {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(-24px); }
+}
+
+.finder-question h2 { text-align: center; margin-bottom: 1.25rem; }
+
+.choice-grid { display: grid; gap: 0.7rem; }
+.choice-btn {
+  display: block; width: 100%; text-align: left;
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 0.9rem 1.1rem; font: inherit; font-size: var(--fs-base); color: var(--ink);
+  cursor: pointer; transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.choice-btn:hover { border-color: #27855f; box-shadow: 0 0 0 1px #27855f, var(--shadow); }
+
+.finder-back {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  margin-top: 1.25rem; font-size: var(--fs-sm); color: var(--ink-faint); font-weight: 500;
+  background: none; border: none; cursor: pointer; padding: 0;
+}
+.finder-back:hover { color: var(--ink-soft); }
+
+.finder-result { text-align: center; }
+.result-card {
+  background: #fff; border: 2px solid var(--accent); border-radius: var(--radius);
+  padding: clamp(1.4rem, 3vw, 2rem); text-align: left; box-shadow: var(--shadow);
+  margin-bottom: 1.25rem;
+}
+.result-card__label {
+  display: inline-block; font-size: var(--fs-xs); font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;
+}
+.result-card h3 { font-size: var(--fs-xl); margin-bottom: 0.4rem; }
+.result-card p { color: var(--ink-soft); margin-bottom: 1rem; }
+
+.result-card--then {
+  border: 1px solid var(--line); box-shadow: var(--shadow-sm);
+}
+.result-card--then .result-card__label { color: var(--ink-faint); }
+
+.finder-restart {
+  margin-top: 0.5rem;
+}

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <title>Find Your Plan | Hybrid Performance Coaching</title>
+  <meta name="description" content="Not sure where to start? Answer a few quick questions and get a straight recommendation — a plan, a free tool, or 1-to-1 coaching, whichever actually fits." />
+  <meta property="og:title" content="Find Your Plan | Hybrid Performance Coaching" />
+  <meta property="og:description" content="Not sure where to start? Answer a few quick questions and get a straight recommendation — a plan, a free tool, or 1-to-1 coaching, whichever actually fits." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://hybridperformancecoaching.co.uk/assets/og-image.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="canonical" href="https://hybridperformancecoaching.co.uk/find-your-plan/" />
+</head>
+<body data-page="find-your-plan">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Find Your Plan</span>
+        <h1>Not sure where to start?</h1>
+        <p>Answer a few quick questions and get a straight recommendation — a plan, a free tool, or coaching, whichever actually fits. No pressure toward the most expensive option.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="finder">
+          <div class="finder-progress" id="finderProgress">
+            <span id="finderProgressLabel">Question 1</span>
+            <div class="finder-progress__bar"><div class="finder-progress__fill" id="finderProgressFill" style="width:20%"></div></div>
+          </div>
+          <div class="finder-stage" id="finderStage"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="/js/main.js"></script>
+  <script>
+  (function () {
+    var stage = document.getElementById('finderStage');
+    var progressLabel = document.getElementById('finderProgressLabel');
+    var progressFill = document.getElementById('finderProgressFill');
+
+    var PLANS = {
+      fivek: { title: 'The 5K Plan for Lifters', price: '£20 one-off', href: '/plans/5k-plan-for-lifters/', desc: 'A 12-week plan built for lifters running their first 5K, two runs a week, structured around your gym sessions.' },
+      sprint: { title: 'The Sprint Triathlon Plan', price: '£20 one-off', href: '/plans/first-sprint-triathlon/', desc: 'A 12-week beginner plan for your first sprint triathlon, one swim, one bike, one run a week.' }
+    };
+    var COACHING = {
+      planOnly: { title: 'Plan Only Coaching', price: '£49 one-off', href: '/coaching/#packages', desc: 'A plan built specifically around you, no ready-made template, no ongoing changes.' },
+      standard: { title: 'Standard Coaching', price: '£79/month', href: '/coaching/#packages', desc: 'A personalised plan plus weekly check-ins and adjustments as you go.' },
+      performance: { title: 'Performance Coaching', price: '£99/month', href: '/coaching/#packages', desc: 'Fully personalised coaching with event-specific peaking, built entirely around your goal.' }
+    };
+    var TOOLS = {
+      pace: { title: 'Pace Calculator', href: '/tools/pace-calculator/', desc: 'Work out your training paces in seconds, free.' },
+      fuel: { title: 'Fuel Calculator', href: '/tools/fuel-calculator/', desc: 'Plan your fuelling and hydration around your training, free.' },
+      strava: { title: 'Garmin & Strava Analysis', href: '/tools/strava-prompt/', desc: 'Get more out of the training data you\'re already collecting, free.' }
+    };
+
+    var answers = {};
+    var historyStack = []; // { step, answersBefore }
+
+    function render(stepId) {
+      historyStack.push({ step: stepId, answersBefore: Object.assign({}, answers) });
+      updateProgress(stepId);
+      stage.innerHTML = '';
+      var q = STEPS[stepId]();
+      stage.appendChild(q);
+    }
+
+    function updateProgress(stepId) {
+      var order = ['q1', 'q2', 'q3', 'q3a', 'q4'];
+      if (stepId === 'q1tool' || stepId === 'result') {
+        progressLabel.textContent = stepId === 'result' ? 'Your recommendation' : 'Almost there';
+        progressFill.style.width = stepId === 'result' ? '100%' : '60%';
+        return;
+      }
+      var idx = order.indexOf(stepId);
+      if (idx === -1) return;
+      var totalSteps = answers.path === 'plan' ? 4 : 2;
+      progressLabel.textContent = 'Question ' + Math.min(idx + 1, totalSteps) + ' of ' + totalSteps;
+      progressFill.style.width = Math.round(((idx + 1) / totalSteps) * 100) + '%';
+    }
+
+    function goBack() {
+      if (historyStack.length < 2) return;
+      historyStack.pop(); // discard current step
+      var prevEntry = historyStack.pop(); // the step we're returning to
+      answers = prevEntry.answersBefore; // restore answers as they were before that step was answered
+      render(prevEntry.step);
+    }
+
+    function makeQuestion(titleText, choices, onPick) {
+      var wrap = document.createElement('div');
+      wrap.className = 'finder-question';
+
+      var h2 = document.createElement('h2');
+      h2.textContent = titleText;
+      wrap.appendChild(h2);
+
+      var grid = document.createElement('div');
+      grid.className = 'choice-grid';
+      choices.forEach(function (c) {
+        var btn = document.createElement('button');
+        btn.className = 'choice-btn';
+        btn.type = 'button';
+        btn.textContent = c.label;
+        btn.addEventListener('click', function () { onPick(c.value); });
+        grid.appendChild(btn);
+      });
+      wrap.appendChild(grid);
+
+      if (historyStack.length > 1) {
+        var back = document.createElement('button');
+        back.className = 'finder-back';
+        back.type = 'button';
+        back.textContent = '← Back';
+        back.addEventListener('click', goBack);
+        wrap.appendChild(back);
+      }
+      return wrap;
+    }
+
+    var STEPS = {
+      q1: function () {
+        return makeQuestion('What are you looking for today?', [
+          { label: 'Help finding the right plan or coaching for a goal', value: 'plan' },
+          { label: 'A quick free tool for training I\'m already doing', value: 'tool' }
+        ], function (val) {
+          answers.path = val;
+          render(val === 'tool' ? 'q1tool' : 'q2');
+        });
+      },
+      q1tool: function () {
+        return makeQuestion('Which tool do you need?', [
+          { label: 'Work out my training paces', value: 'pace' },
+          { label: 'Plan my fuelling & hydration', value: 'fuel' },
+          { label: 'Get more from my Garmin/Strava data', value: 'strava' }
+        ], function (val) {
+          answers.tool = val;
+          renderResult();
+        });
+      },
+      q2: function () {
+        return makeQuestion('Where are you starting from?', [
+          { label: 'Never trained in a structured way before', value: 'new' },
+          { label: 'I lift, but don\'t run/cycle/swim much', value: 'lifter' },
+          { label: 'I run or cycle regularly, but don\'t lift', value: 'endurance' },
+          { label: 'I\'ve done structured training in more than one area', value: 'mixed' },
+          { label: 'I\'m already training seriously and want to push further', value: 'serious' }
+        ], function (val) {
+          answers.background = val;
+          render('q3');
+        });
+      },
+      q3: function () {
+        return makeQuestion('What\'s the goal?', [
+          { label: 'General fitness, no specific event', value: 'fitness' },
+          { label: 'A first event (5K, sprint triathlon, century ride)', value: 'firstEvent' },
+          { label: 'Pushing an existing event further (Olympic tri, 70.3, marathon, ultra, 140.6)', value: 'pushFurther' },
+          { label: 'Building strength and muscle while staying fit', value: 'strength' }
+        ], function (val) {
+          answers.goal = val;
+          if (val === 'firstEvent' || val === 'pushFurther') {
+            render('q3a');
+          } else {
+            render('q4');
+          }
+        });
+      },
+      q3a: function () {
+        var choices = answers.goal === 'firstEvent'
+          ? [
+              { label: '5K', value: '5k' },
+              { label: 'Sprint triathlon', value: 'sprint' },
+              { label: 'Century ride', value: 'century' }
+            ]
+          : [
+              { label: 'Olympic-distance triathlon', value: 'olympic' },
+              { label: '70.3 / Half marathon', value: '70.3' },
+              { label: 'Marathon', value: 'marathon' },
+              { label: 'Ultra / Full distance (140.6)', value: 'ultra' }
+            ];
+        return makeQuestion('Which one?', choices, function (val) {
+          answers.event = val;
+          render('q4');
+        });
+      },
+      q4: function () {
+        return makeQuestion('How personalised do you want it?', [
+          { label: 'A ready-made plan I follow myself', value: 'readyMade' },
+          { label: 'A plan built specifically around me, no ongoing changes', value: 'planOnly' },
+          { label: 'A plan plus regular check-ins and adjustments', value: 'standard' },
+          { label: 'Fully personalised coaching with event-specific peaking', value: 'performance' }
+        ], function (val) {
+          answers.personalisation = val;
+          renderResult();
+        });
+      }
+    };
+
+    function buildRecommendation() {
+      // Tool-only path
+      if (answers.path === 'tool') {
+        var t = TOOLS[answers.tool];
+        return { start: { label: 'Your tool', title: t.title, desc: t.desc, href: t.href, cta: 'Use ' + t.title }, then: null };
+      }
+
+      var p = answers.personalisation;
+      var g = answers.goal;
+
+      // Ready-made plan requests
+      if (p === 'readyMade') {
+        if (g === 'firstEvent') {
+          if (answers.event === '5k') {
+            return { start: { label: 'Start here', title: PLANS.fivek.title, desc: PLANS.fivek.desc, href: PLANS.fivek.href, cta: 'View the plan — ' + PLANS.fivek.price },
+                     then: { label: 'Then', title: 'Performance Coaching', desc: 'Once you\'ve run your first 5K, 1-to-1 coaching can build you toward a 10K, a triathlon, or whatever\'s next.', href: COACHING.performance.href } };
+          }
+          if (answers.event === 'sprint') {
+            return { start: { label: 'Start here', title: PLANS.sprint.title, desc: PLANS.sprint.desc, href: PLANS.sprint.href, cta: 'View the plan — ' + PLANS.sprint.price },
+                     then: { label: 'Then', title: 'Performance Coaching', desc: 'Once you\'ve completed a sprint distance, coaching can build you specifically toward an Olympic-distance triathlon.', href: COACHING.performance.href } };
+          }
+          // century — not built yet
+          return { start: { label: 'Start here', title: COACHING.planOnly.title, desc: 'We don\'t have a ready-made Century Ride plan yet, but Plan Only coaching gets you the same personalised structure, built around your century ride.', href: COACHING.planOnly.href, cta: 'See Plan Only — ' + COACHING.planOnly.price }, then: null };
+        }
+        // No ready-made plan exists for pushing an existing event further, general fitness, or strength goals
+        return { start: { label: 'Start here', title: COACHING.standard.title, desc: 'There isn\'t a ready-made plan for this goal yet, but Standard coaching gets you a plan built around exactly this, plus check-ins as you go.', href: COACHING.standard.href, cta: 'See Standard — ' + COACHING.standard.price }, then: null };
+      }
+
+      // Coaching tiers directly requested
+      var tier = COACHING[p] || COACHING.standard;
+      var goalText = {
+        fitness: 'general fitness',
+        firstEvent: 'your first ' + (answers.event === '5k' ? '5K' : answers.event === 'sprint' ? 'sprint triathlon' : 'century ride'),
+        pushFurther: (answers.event === 'olympic' ? 'an Olympic-distance triathlon' : answers.event === '70.3' ? 'a 70.3 or half marathon' : answers.event === 'marathon' ? 'a marathon' : 'an ultra or full-distance event'),
+        strength: 'building strength and muscle while staying fit'
+      }[g] || 'your goal';
+
+      return { start: { label: 'Start here', title: tier.title, desc: tier.desc + ' Built around ' + goalText + '.', href: tier.href, cta: 'See ' + tier.title + ' — ' + tier.price }, then: null };
+    }
+
+    function renderResult() {
+      historyStack.push({ step: 'result', answersBefore: Object.assign({}, answers) });
+      updateProgress('result');
+      var rec = buildRecommendation();
+      stage.innerHTML = '';
+
+      var wrap = document.createElement('div');
+      wrap.className = 'finder-result finder-question';
+
+      var startCard = document.createElement('div');
+      startCard.className = 'result-card';
+      startCard.innerHTML =
+        '<span class="result-card__label">' + rec.start.label + '</span>' +
+        '<h3>' + rec.start.title + '</h3>' +
+        '<p>' + rec.start.desc + '</p>' +
+        '<a class="btn btn--primary" href="' + rec.start.href + '">' + rec.start.cta + '</a>';
+      wrap.appendChild(startCard);
+
+      if (rec.then) {
+        var thenCard = document.createElement('div');
+        thenCard.className = 'result-card result-card--then';
+        thenCard.innerHTML =
+          '<span class="result-card__label">' + rec.then.label + '</span>' +
+          '<h3>' + rec.then.title + '</h3>' +
+          '<p>' + rec.then.desc + '</p>' +
+          '<a class="btn btn--ghost" href="' + rec.then.href + '">Learn more</a>';
+        wrap.appendChild(thenCard);
+      }
+
+      var restart = document.createElement('button');
+      restart.className = 'btn btn--ghost finder-restart';
+      restart.type = 'button';
+      restart.textContent = 'Start over';
+      restart.addEventListener('click', function () {
+        answers = {}; historyStack = [];
+        render('q1');
+      });
+      wrap.appendChild(restart);
+
+      stage.appendChild(wrap);
+    }
+
+    render('q1');
+  })();
+  </script>
+</body>
+</html>
