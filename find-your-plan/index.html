@@ -78,17 +78,15 @@
     }
 
     function updateProgress(stepId) {
-      var order = ['q1', 'q2', 'q3', 'q3a', 'q4'];
-      if (stepId === 'q1tool' || stepId === 'result') {
-        progressLabel.textContent = stepId === 'result' ? 'Your recommendation' : 'Almost there';
-        progressFill.style.width = stepId === 'result' ? '100%' : '60%';
+      if (stepId === 'result') {
+        progressLabel.textContent = 'Your recommendation';
+        progressFill.style.width = '100%';
         return;
       }
-      var idx = order.indexOf(stepId);
-      if (idx === -1) return;
-      var totalSteps = answers.path === 'plan' ? 4 : 2;
-      progressLabel.textContent = 'Question ' + Math.min(idx + 1, totalSteps) + ' of ' + totalSteps;
-      progressFill.style.width = Math.round(((idx + 1) / totalSteps) * 100) + '%';
+      var labels = { q1: 'Question 1', q1tool: 'Question 2', q2: 'Question 2', q3: 'Question 3', q3a: 'Question 4', q4: 'Question ' + (answers.goal === 'firstEvent' || answers.goal === 'pushFurther' ? '5' : '4') };
+      var widths = { q1: 20, q1tool: 100, q2: 40, q3: 60, q3a: 80, q4: 95 };
+      progressLabel.textContent = labels[stepId] || '';
+      progressFill.style.width = (widths[stepId] || 50) + '%';
     }
 
     function goBack() {

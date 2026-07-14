@@ -437,7 +437,7 @@ main { flex: 1; }
   transition: width 0.25s ease;
 }
 
-.finder-stage { position: relative; overflow: hidden; }
+.finder-stage { position: relative; overflow: hidden; padding: 3px; margin: -3px; }
 .finder-question {
   animation: finder-in 0.28s ease;
 }
@@ -474,7 +474,7 @@ main { flex: 1; }
 .finder-result { text-align: center; }
 .result-card {
   background: #fff; border: 2px solid var(--accent); border-radius: var(--radius);
-  padding: clamp(1.4rem, 3vw, 2rem); text-align: left; box-shadow: var(--shadow);
+  padding: clamp(1.4rem, 3vw, 2rem); text-align: center; box-shadow: var(--shadow);
   margin-bottom: 1.25rem;
 }
 .result-card__label {
