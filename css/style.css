@@ -411,4 +411,4 @@ main { flex: 1; }
   font-size: var(--fs-lg); line-height: 1.5; font-weight: 500;
   color: var(--ink); margin: 0 0 0.9rem;
 }
-.testimonial__who { font-size: var(--fs-sm); color: var(--ink-soft); text-align: center; margin: 0; }
+.testimonial__who { display: block; width: 100%; font-size: var(--fs-sm); color: var(--ink-soft); text-align: center; margin: 0; }
