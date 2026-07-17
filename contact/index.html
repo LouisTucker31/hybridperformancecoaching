@@ -54,20 +54,22 @@
               </div>
               <div class="field"><label for="c-goal">Main goal <span class="hint">(optional)</span></label><input id="c-goal" name="goal" type="text" placeholder="e.g. first 10K while keeping my strength" /></div>
 
-              <p class="form-group-title is-second">If enquiring about a plan <span class="hint" style="text-transform:none; letter-spacing:0; font-weight:400;">(optional, skip if not relevant)</span></p>
-              <div class="field-row">
-                <div class="field"><label for="c-event">Event date <span class="hint">(if any)</span></label><input id="c-event" name="event_date" type="date" /></div>
-                <div class="field"><label for="c-gym">Gym days available</label>
-                  <select id="c-gym" name="gym_days"><option value="">Select…</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select>
+              <div id="plan-fields" hidden>
+                <p class="form-group-title is-second">Tell me more about your training</p>
+                <div class="field-row">
+                  <div class="field"><label for="c-event">Event date <span class="hint">(if any)</span></label><input id="c-event" name="event_date" type="date" /></div>
+                  <div class="field"><label for="c-gym">Gym days available</label>
+                    <select id="c-gym" name="gym_days"><option value="">Select…</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select>
+                  </div>
                 </div>
-              </div>
-              <div class="field-row">
-                <div class="field"><label for="c-cardio">Run / cycle / swim days</label>
-                  <select id="c-cardio" name="cardio_days"><option value="">Select…</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select>
+                <div class="field-row">
+                  <div class="field"><label for="c-cardio">Run / cycle / swim days</label>
+                    <select id="c-cardio" name="cardio_days"><option value="">Select…</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select>
+                  </div>
+                  <div class="field"><label for="c-injuries">Injuries or limitations</label><input id="c-injuries" name="injuries" type="text" /></div>
                 </div>
-                <div class="field"><label for="c-injuries">Injuries or limitations</label><input id="c-injuries" name="injuries" type="text" /></div>
+                <div class="field"><label for="c-training">Current training</label><textarea id="c-training" name="current_training" placeholder="What does a normal training week look like right now?"></textarea></div>
               </div>
-              <div class="field"><label for="c-training">Current training</label><textarea id="c-training" name="current_training" placeholder="What does a normal training week look like right now?"></textarea></div>
 
               <div class="field"><label for="c-message">Message</label><textarea id="c-message" name="message" required placeholder="What would you like to know?"></textarea></div>
               <p class="form-note" style="margin-top:0.4rem">By submitting this form your details are sent via Formspree to respond to your message. See our <a href="/privacy/" style="color:var(--accent)">Privacy Policy</a>.</p>
@@ -89,7 +91,7 @@
               <p class="muted small">You don't have to talk to me first. Try a free tool, or have a look at the bespoke plans.</p>
               <div class="btn-row" style="margin-top:0.9rem">
                 <a class="btn btn--ghost btn--sm" href="/tools/">Free tools</a>
-                <a class="btn btn--primary btn--sm" href="/coaching/">Bespoke Plans</a>
+                <a class="btn btn--primary btn--sm" href="/coaching/">Bespoke</a>
               </div>
             </div>
           </div>

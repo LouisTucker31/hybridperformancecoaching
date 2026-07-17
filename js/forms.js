@@ -44,4 +44,12 @@
   }
 
   wire("contact-form", "contact-success", "https://formspree.io/f/mnjkgdkq");
+
+  var interestSelect = document.getElementById("c-interest");
+  var planFields = document.getElementById("plan-fields");
+  if (interestSelect && planFields) {
+    interestSelect.addEventListener("change", function () {
+      planFields.hidden = interestSelect.value.indexOf("Plan") === -1;
+    });
+  }
 })();

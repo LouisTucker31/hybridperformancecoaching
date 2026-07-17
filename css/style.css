@@ -137,6 +137,7 @@ main { flex: 1; }
 .grid { display: grid; gap: clamp(0.8rem, 2vw, 1.1rem); }
 .grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+#packages .grid-3 { align-items: start; }
 
 /* ---------- Lists ---------- */
 .ticks { list-style: none; padding: 0; }
@@ -278,7 +279,7 @@ main { flex: 1; }
 
 /* ---------- Price cards ---------- */
 .price { display: flex; flex-direction: column; }
-.price--feature { border-color: var(--accent); border-width: 2px; padding: 1.75rem; box-shadow: var(--shadow); }
+.price--feature { border-color: var(--accent); border-width: 2px; padding: 2.5rem; box-shadow: var(--shadow); }
 .price__amount { font-size: var(--fs-2xl); font-weight: 700; margin: 0.4rem 0 0; letter-spacing: -0.02em; }
 .price__amount .per { font-size: var(--fs-sm); color: var(--ink-faint); font-weight: 400; }
 .price .ticks { margin: 1rem 0; flex: 1; }
