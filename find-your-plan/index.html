@@ -56,9 +56,9 @@
       sprint: { title: 'The Sprint Triathlon Plan', price: '£20 one-off', href: '/plans/first-sprint-triathlon/', desc: 'A 12-week beginner plan for your first sprint triathlon, one swim, one bike, one run a week.' }
     };
     var COACHING = {
-      planOnly: { title: 'Plan Only Coaching', price: '£49 one-off', href: '/coaching/#packages', desc: 'A plan built specifically around you, no ready-made template, no ongoing changes.' },
-      standard: { title: 'Standard Coaching', price: '£79/month', href: '/coaching/#packages', desc: 'A personalised plan plus weekly check-ins and adjustments as you go.' },
-      performance: { title: 'Performance Coaching', price: '£99/month', href: '/coaching/#packages', desc: 'Fully personalised coaching with event-specific peaking, built entirely around your goal.' }
+      planOnly: { title: 'Bespoke Plan', price: '£49 one-off', href: '/coaching/#packages', desc: 'A plan built specifically around you from a detailed intake form, no ready-made template.' },
+      standard: { title: 'Bespoke Plan + Consultation', price: '£79 one-off', href: '/coaching/#packages', desc: 'A consultation call, a personalised plan, and 2 weeks of email support after delivery.' },
+      performance: { title: 'Performance Plan', price: '£99 one-off', href: '/coaching/#packages', desc: 'Fully bespoke, event-specific peaking and taper, plus 4 weeks of email support.' }
     };
     var TOOLS = {
       pace: { title: 'Pace Calculator', href: '/tools/pace-calculator/', desc: 'Work out your training paces in seconds, free.' },
@@ -196,9 +196,9 @@
       q4: function () {
         return makeQuestion('How personalised do you want it?', [
           { label: 'A ready-made plan I follow myself', value: 'readyMade' },
-          { label: 'A plan built specifically around me, no ongoing changes', value: 'planOnly' },
-          { label: 'A plan plus regular check-ins and adjustments', value: 'standard' },
-          { label: 'Fully personalised coaching with event-specific peaking', value: 'performance' }
+          { label: 'A plan built specifically around me, no call needed', value: 'planOnly' },
+          { label: 'A plan built around a consultation call, with follow-up support', value: 'standard' },
+          { label: 'Fully bespoke, built around a specific event', value: 'performance' }
         ], function (val) {
           answers.personalisation = val;
           renderResult();
@@ -221,17 +221,17 @@
         if (g === 'firstEvent') {
           if (answers.event === '5k') {
             return { start: { label: 'Start here', title: PLANS.fivek.title, desc: PLANS.fivek.desc, href: PLANS.fivek.href, cta: 'View the plan — ' + PLANS.fivek.price },
-                     then: { label: 'Then', title: 'Performance Coaching', desc: 'Once you\'ve run your first 5K, 1-to-1 coaching can build you toward a 10K, a triathlon, or whatever\'s next.', href: COACHING.performance.href } };
+                     then: { label: 'Then', title: 'Performance Plan', desc: 'Once you\'ve run your first 5K, a Performance Plan can build you toward a 10K, a triathlon, or whatever\'s next.', href: COACHING.performance.href } };
           }
           if (answers.event === 'sprint') {
             return { start: { label: 'Start here', title: PLANS.sprint.title, desc: PLANS.sprint.desc, href: PLANS.sprint.href, cta: 'View the plan — ' + PLANS.sprint.price },
-                     then: { label: 'Then', title: 'Performance Coaching', desc: 'Once you\'ve completed a sprint distance, coaching can build you specifically toward an Olympic-distance triathlon.', href: COACHING.performance.href } };
+                     then: { label: 'Then', title: 'Performance Plan', desc: 'Once you\'ve completed a sprint distance, a Performance Plan can build you specifically toward an Olympic-distance triathlon.', href: COACHING.performance.href } };
           }
           // century — not built yet
-          return { start: { label: 'Start here', title: COACHING.planOnly.title, desc: 'We don\'t have a ready-made Century Ride plan yet, but Plan Only coaching gets you the same personalised structure, built around your century ride.', href: COACHING.planOnly.href, cta: 'See Plan Only — ' + COACHING.planOnly.price }, then: null };
+          return { start: { label: 'Start here', title: COACHING.planOnly.title, desc: 'We don\'t have a ready-made Century Ride plan yet, but the Bespoke Plan gets you the same personalised structure, built around your century ride.', href: COACHING.planOnly.href, cta: 'See Bespoke Plan — ' + COACHING.planOnly.price }, then: null };
         }
         // No ready-made plan exists for pushing an existing event further, general fitness, or strength goals
-        return { start: { label: 'Start here', title: COACHING.standard.title, desc: 'There isn\'t a ready-made plan for this goal yet, but Standard coaching gets you a plan built around exactly this, plus check-ins as you go.', href: COACHING.standard.href, cta: 'See Standard — ' + COACHING.standard.price }, then: null };
+        return { start: { label: 'Start here', title: COACHING.standard.title, desc: 'There isn\'t a ready-made plan for this goal yet, but the Bespoke Plan + Consultation gets you a plan built around exactly this, with support after delivery.', href: COACHING.standard.href, cta: 'See Bespoke Plan + Consultation — ' + COACHING.standard.price }, then: null };
       }
 
       // Coaching tiers directly requested
