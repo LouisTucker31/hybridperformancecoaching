@@ -18,7 +18,7 @@
       <ul class="nav-links" id="nav-links">
         <li><a href="/" data-page="home">Home</a></li>
         <li><a href="/about/" data-page="about">About</a></li>
-        <li><a href="/coaching/" data-page="coaching">Coaching</a></li>
+        <li><a href="/coaching/" data-page="coaching">Bespoke Plans</a></li>
         <li><a href="/plans/" data-page="plans">Plans</a></li>
         <li><a href="/tools/" data-page="tools">Free Tools</a></li>
         <li><a href="/contact/" data-page="contact">Contact</a></li>
@@ -33,7 +33,7 @@
     <ul class="footer-nav">
       <li><a href="/">Home</a></li>
       <li><a href="/about/">About</a></li>
-      <li><a href="/coaching/">Coaching</a></li>
+      <li><a href="/coaching/">Bespoke Plans</a></li>
       <li><a href="/plans/">Plans</a></li>
       <li><a href="/tools/">Free Tools</a></li>
       <li><a href="/contact/">Contact</a></li>

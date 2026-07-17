@@ -43,6 +43,5 @@
     });
   }
 
-  wire("apply-form", "apply-success", "https://formspree.io/f/mgojnkbq");
   wire("contact-form", "contact-success", "https://formspree.io/f/mnjkgdkq");
 })();
