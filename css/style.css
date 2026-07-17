@@ -374,6 +374,10 @@ main { flex: 1; }
 .footer-nav a { font-size: var(--fs-sm); color: var(--ink-soft); }
 .footer-nav a:hover { color: var(--ink); }
 .footer-meta { font-size: var(--fs-xs); color: var(--ink-faint); }
+.footer-meta-group { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.footer-social { display: flex; gap: 0.7rem; list-style: none; padding: 0; }
+.footer-social a { color: var(--ink-faint); display: inline-flex; transition: color 0.15s ease; }
+.footer-social a:hover { color: var(--accent); }
 
 @media (max-width: 560px) {
   .footer-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
