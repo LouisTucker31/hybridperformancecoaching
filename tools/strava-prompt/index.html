@@ -37,29 +37,84 @@
             <h2>The prompt</h2>
             <button class="btn btn--primary btn--sm" id="copy-btn" type="button" style="min-height:38px;padding:0.45rem 0.9rem">Copy prompt</button>
           </div>
-          <div class="prompt-box" id="prompt">You are an experienced endurance and strength coach. I am going to give you my recent training data from Garmin or Strava. Please review it and give me a clear, practical summary.
+          <div class="prompt-wrap" id="prompt-wrap">
+          <div class="prompt-box" id="prompt">Weekly Training & Health Report — Standing Prompt
+Paste this as your first message in a new chat each week.
 
-Cover these points:
-1. What stands out across the week, good and bad.
-2. Whether my easy sessions were actually easy and my hard sessions actually hard.
-3. Any signs of doing too much, too little, or always training at the same intensity.
-4. How the balance between running, cycling and strength looks.
-5. Three specific, realistic things to adjust next week.
+You are going to help me build my weekly training, health, and lifestyle report. This is a recurring task — follow this exact process.
 
-Keep it concise and avoid jargon. If something is missing that you would need to judge properly, tell me what to add.
+Step 1: Ask upfront
+Before collecting anything, ask me the following, all in one message:
+1. What I use for training/activity tracking — e.g. Garmin, Apple Watch, Strava, Whoop, Oura, Fitbit, or something else (I may use more than one).
+2. What I use for lifestyle/diet tracking, if anything — e.g. Bevel, MyFitnessPal, Apple Health, or something else (or none).
+3. Whether there's anything I want excluded from this week's data (e.g. a specific activity type like walking or motorcycling) — don't assume anything is excluded unless I say so.
+4. For last week's report, as a Word/markdown/PDF document (or ask me to paste it) so you can do a week-over-week comparison. If I don't have one (e.g. this is the first week), proceed without comparison.
 
-Here is my data:
-[ paste your sessions here: date, type, distance or duration, average pace or power, heart rate, and how it felt ]</div>
+Step 2: Tailor your data requests to what I actually use
+Once I've told you my platform(s), don't use a generic checklist — ask for what that specific platform actually surfaces. Use these as your starting templates, but adapt based on what I say the app shows:
+- Garmin: activity files (.fit files inside .zip uploads, one per workout) or activity screenshots; sleep & health screenshots (sleep score, sleep duration/consistency, HRV status, blood pressure, respiration, resting heart rate, stress, body battery, fitness age); training status & performance screenshots (training readiness by day, acute/chronic training load, load ratio, VO2 max, training effect, running lactate threshold, endurance score, hill score).
+- Apple Watch / Health app: workout summaries (type, duration, avg/max HR, calories); sleep stages and sleep score if available; HRV and resting heart rate trends; activity rings (move/exercise/stand); any Cardio Fitness (VO2 max) data.
+- Strava: activity list with pace/power/HR per session; any Relative Effort or Fitness & Freshness (CTL/ATL/TSB) data if they have Strava subscription features.
+- Whoop: daily Recovery %, Strain score, Sleep performance %, HRV, resting heart rate.
+- Oura: daily Readiness score, Sleep score, Activity score, HRV, resting heart rate, body temperature deviation.
+- Fitbit: daily Readiness score if available, sleep score, active zone minutes, resting heart rate, HRV.
+- Bevel: nutrition screenshots (daily nutrition score, calories vs. goal, fat/carbs/protein); journal screenshots (hydration, alcohol, caffeine, sickness, injury, sexual activity, nighttime habits like nasal strips/reading in bed/sleep interruptions); bodyweight trend screenshots; app-generated Recovery/Sleep score insights if available.
+- MyFitnessPal: daily calories vs. goal, macros (fat/carbs/protein), any logged weight.
+- Something else / a platform not listed here: ask me what metrics and screens that app shows before requesting anything, then build a tailored list the same way as above.
+
+If I use more than one platform, collect each one separately and tell me which one you're currently collecting for.
+
+Step 3: Collect the data, in batches
+For each platform, ask for its data in logical batches (e.g. activities first, then daily health metrics, then longer-term trends — adjust based on what's relevant to that platform). After each batch, briefly confirm what you received and say you're waiting for the next batch — don't start analyzing yet. Only move on once I explicitly say something like "that's all I've got" for that platform.
+
+If I ask for help getting something (e.g. "how do I export this from Garmin Connect" or "where do I find my Strava Fitness & Freshness data"), give me clear instructions to get it, then stop and wait for me to send the actual data back — don't guess or fill in gaps yourself.
+
+Step 3.5: Context check-in
+Once every platform I mentioned has been covered, before generating the report, ask me about the week outside of the numbers — in one message:
+- Work/life load: anything unusual going on at work or in life this week — busier/more stressful than normal, travel, poor sleep environment, etc.
+- Sleep environment: did I sleep in my own bed all week, or was there travel/a different bed/disrupted routine on any nights?
+- Subjective read: how I'd actually describe how training and recovery felt this week, in my own words — separate from what the data says.
+
+Treat my answers as qualitative context, not data to table out — weave them into the narrative sections (Headline Summary, and What This All Means, Together) wherever they help explain or complicate what the numbers show. If my subjective read conflicts with the data (e.g. I felt great despite poor readiness scores, or vice versa), call that out explicitly rather than picking one over the other.
+
+Then ask me one more time: "Is there anything else you'd like to add before I generate the report?" — give me a chance to send anything I forgot, and don't proceed to Step 4 until I confirm I'm done.
+
+Step 4: Process the raw data
+Extract and parse any .fit files for session-level detail (sport type, duration, avg/max HR, power, distance, calories, training effect) rather than relying on screenshots alone. Exclude only what I told you to exclude in Step 1 — otherwise include everything. Cross-reference dates across all sources so the final report tells one coherent story rather than listing disconnected numbers.
+
+Step 5: Generate the report
+Write it as a downloadable markdown file with this exact structure:
+1. Headline Summary — a short, direct paragraph capturing the week's overall story in plain language. If a previous week's report was provided, open by explicitly comparing this week to last week (what improved, what got worse, what's the same) before summarizing this week on its own. Weave in relevant context from Step 3.5 where it helps explain the story.
+2. Training Sessions — a table (day, session, duration, avg/max HR, notes) built from the parsed activity files, plus a short paragraph flagging any patterns (e.g. stacked hard sessions, volume totals, notable single efforts).
+3. Health Metrics — subsections for Sleep, HRV Status, Resting Heart Rate & Stress, Body Battery, Blood Pressure, Respiration, and Fitness Age, each with the week's actual numbers/trend and a plain-language read of what it means.
+4. Training Status & Performance Trends — a Training Readiness table (date, score, band, note) plus subsections on Acute Training Load & Load Ratio, VO2 Max & Running Economy/Lactate Threshold, and Endurance Score & Hill Score.
+5. What This All Means, Together — a synthesis paragraph connecting the training and health data into one narrative (don't just restate the sections — explain the cause-and-effect). Bring in the Step 3.5 context here too — note where it supports, explains, or contradicts the data.
+6. Recommendations Going Forward — a numbered list, specific and actionable, directly tied to what the data showed.
+7. Lifestyle & Nutrition Tracking — (only if lifestyle data was provided) tables for Nutrition, Journal (hydration/alcohol/caffeine/sickness/etc.), and Bodyweight, plus a subsection summarizing any app-generated correlation insights (e.g. Recovery/Sleep score impact factors).
+8. What the Combined Picture Adds — a synthesis paragraph specifically connecting the lifestyle/nutrition data to the training and health findings from earlier sections — call out anything that changes or sharpens the earlier interpretation.
+9. Updated Recommendations — building on Section 6, note explicitly which recommendations are carried forward, which are sharpened, and which are new, given the fuller picture.
+
+Formatting notes:
+- Use tables wherever there's day-by-day or comparable data.
+- Bold the most important single data points (e.g. an unusually low readiness score, a notable outlier).
+- Keep the tone direct and plain-spoken, not clinical — explain what the data means for me, not just what it says.
+- Close with a one-line note on what sources the report was built from and the date range covered.
+
+Ongoing rule
+Once this report exists, treat it as "last week's report" for next time — if I start a new chat next week and say I'm continuing this, ask me to paste or upload the previous report before starting Step 1.</div>
+        </div>
+          <button class="prompt-expand" id="prompt-expand" type="button">Show full prompt ▾</button>
         </div>
 
         <hr class="divider" />
         <div class="card">
           <h3 style="margin-bottom:0.6rem">How to use it</h3>
           <ul class="ticks">
-            <li>Tap copy, then open your AI assistant of choice.</li>
-            <li>Paste the prompt, then add your last week or two of sessions where shown.</li>
-            <li>Export from Strava or read figures straight off Garmin Connect, whatever is quicker.</li>
-            <li>Treat the output as a second opinion, not a training prescription.</li>
+            <li>Tap copy, then paste it as the first message in a new chat, once a week.</li>
+            <li>It'll ask what you track with and what to exclude before requesting any data.</li>
+            <li>Send your data in the batches it asks for, activities first, then health metrics, then lifestyle data if you track it.</li>
+            <li>It checks in on how the week actually felt before generating anything, then builds the full report.</li>
+            <li>Keep the report it gives you. Paste it in next week for a proper week-over-week comparison.</li>
           </ul>
         </div>
 
@@ -89,6 +144,18 @@ Here is my data:
           document.body.removeChild(ta);
         }
       });
+    })();
+  </script>
+  <script>
+    (function () {
+      var wrap = document.getElementById("prompt-wrap");
+      var expandBtn = document.getElementById("prompt-expand");
+      if (wrap && expandBtn) {
+        expandBtn.addEventListener("click", function () {
+          var open = wrap.classList.toggle("is-expanded");
+          expandBtn.textContent = open ? "Show less ▴" : "Show full prompt ▾";
+        });
+      }
     })();
   </script>
 </body>

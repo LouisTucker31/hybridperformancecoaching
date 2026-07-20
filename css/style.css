@@ -367,6 +367,13 @@ main { flex: 1; }
 
 .prompt-box { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 1rem; font-size: var(--fs-sm); line-height: 1.55; white-space: pre-wrap; color: var(--ink-soft); }
 
+.prompt-wrap { position: relative; max-height: 200px; overflow: hidden; }
+.prompt-wrap::after { content: ""; position: absolute; left: 1px; right: 1px; bottom: 1px; height: 64px; background: linear-gradient(to bottom, rgba(255,255,255,0), #fff); pointer-events: none; border-radius: 0 0 var(--radius-sm) var(--radius-sm); }
+.prompt-wrap.is-expanded { max-height: none; }
+.prompt-wrap.is-expanded::after { display: none; }
+.prompt-expand { display: block; width: 100%; text-align: center; background: none; border: none; color: var(--accent); font-weight: 600; font-size: var(--fs-sm); padding: 0.7rem 0 0.2rem; cursor: pointer; }
+.prompt-expand:hover { color: var(--accent-dark); }
+
 /* ---------- Footer ---------- */
 .site-footer { border-top: 1px solid var(--line); padding-block: clamp(1.75rem, 4vw, 2.5rem); padding-bottom: calc(clamp(1.75rem, 4vw, 2.5rem) + var(--safe-bottom)); }
 .footer-inner { display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: center; justify-content: space-between; }
