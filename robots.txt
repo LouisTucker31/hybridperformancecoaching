@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hybridperformancecoaching.co.uk/sitemap.xml

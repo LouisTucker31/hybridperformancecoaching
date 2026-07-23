@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <base href="https://hybridperformancecoaching.co.uk/" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="icon" sizes="192x192" href="assets/favicon-192.png" />
+  <link rel="icon" sizes="512x512" href="assets/favicon-512.png" />
+  <title>One-Rep Max Calculator | Hybrid Performance Coaching</title>
+  <meta name="description" content="Estimate your one-rep max from any rep range, and see training percentages to set accurate loads." />
+  <meta property="og:title" content="One-Rep Max Calculator | Hybrid Performance Coaching" />
+  <meta property="og:description" content="Estimate your one-rep max from any rep range, and see training percentages to set accurate loads." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://hybridperformancecoaching.co.uk/assets/og-image.jpg" />
+  <meta property="og:site_name" content="Hybrid Performance Coaching" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://hybridperformancecoaching.co.uk/assets/og-image.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <meta property="og:url" content="https://hybridperformancecoaching.co.uk/tools/one-rep-max-calculator/" />
+  <link rel="canonical" href="https://hybridperformancecoaching.co.uk/tools/one-rep-max-calculator/" />
+</head>
+<body data-page="one-rep-max-calculator">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-hero-dark">
+      <div class="container">
+        <span class="eyebrow">Free Tool</span>
+        <h1>One-Rep Max Calculator</h1>
+        <p>Estimate your 1RM from any rep range, and see training percentages to set accurate loads.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="tool-shell">
+          <div class="ath-card">
+            <div class="field">
+              <span class="field-label" id="weight-lifted-label">Weight lifted</span>
+              <div class="field-row" style="grid-template-columns:2fr 1fr" role="group" aria-labelledby="weight-lifted-label">
+                <input type="number" id="weight" placeholder="e.g. 100" min="0" step="0.5" inputmode="decimal" aria-label="Weight lifted" />
+                <select id="unit" aria-label="Unit">
+                  <option value="kg">kg</option>
+                  <option value="lb">lb</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field" style="margin-top:1.1rem">
+              <label for="reps">Reps performed</label>
+              <input type="number" id="reps" placeholder="e.g. 5" min="1" max="12" inputmode="numeric" />
+              <span class="hint small">Most accurate at 12 reps or fewer.</span>
+            </div>
+          </div>
+
+          <div class="tool-output">
+            <span class="eyebrow">Your Estimated 1RM</span>
+            <div class="result-row result-row--tight">
+              <span class="k">One-rep max</span>
+              <span class="v is-empty" id="out-1rm">&mdash;</span>
+            </div>
+            <hr class="tool-group-divider" />
+            <span class="form-group-title is-second">Training Percentages</span>
+            <div class="result-row">
+              <span class="k">90%</span>
+              <span class="v is-empty" id="out-90">&mdash;</span>
+            </div>
+            <div class="result-row">
+              <span class="k">80%</span>
+              <span class="v is-empty" id="out-80">&mdash;</span>
+            </div>
+            <div class="result-row">
+              <span class="k">70%</span>
+              <span class="v is-empty" id="out-70">&mdash;</span>
+            </div>
+            <div class="result-row">
+              <span class="k">60%</span>
+              <span class="v is-empty" id="out-60">&mdash;</span>
+            </div>
+
+            <p class="small muted" id="out-note" style="margin-top:0.9rem">Enter a weight and rep count above to see your estimated max.</p>
+          </div>
+        </div>
+
+        <div class="tool-notes">
+          <h3>How to read this</h3>
+          <ul class="ticks">
+            <li>This estimates your max from a set you've actually completed, not from testing a true one-rep max.</li>
+            <li>It's most accurate for sets of 12 reps or fewer, and less reliable much beyond that.</li>
+            <li>Use the percentages to set training loads across a week, not as a one-off max attempt.</li>
+            <li>This is a general estimate, not a substitute for testing under proper supervision if you want an exact number.</li>
+          </ul>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="btn-row">
+          <a class="btn btn--ghost" href="tools/">&larr; All tools</a>
+          <a class="btn btn--primary" href="bespoke/">Build this into a plan</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      var weightEl = document.getElementById("weight");
+      var unitEl = document.getElementById("unit");
+      var repsEl = document.getElementById("reps");
+
+      var out1rm = document.getElementById("out-1rm");
+      var out90 = document.getElementById("out-90");
+      var out80 = document.getElementById("out-80");
+      var out70 = document.getElementById("out-70");
+      var out60 = document.getElementById("out-60");
+      var outNote = document.getElementById("out-note");
+
+      function setResult(el, text) {
+        el.textContent = text;
+        if (text === "\u2014") {
+          el.classList.add("is-empty");
+        } else {
+          el.classList.remove("is-empty");
+        }
+      }
+
+      function round(n) {
+        return Math.round(n * 2) / 2;
+      }
+
+      function calculate() {
+        var weight = parseFloat(weightEl.value);
+        var reps = parseInt(repsEl.value, 10);
+        var unit = unitEl.value;
+
+        if (!weight || weight <= 0 || !reps || reps <= 0 || reps > 12) {
+          setResult(out1rm, "\u2014");
+          setResult(out90, "\u2014");
+          setResult(out80, "\u2014");
+          setResult(out70, "\u2014");
+          setResult(out60, "\u2014");
+          outNote.style.display = "block";
+          return;
+        }
+
+        outNote.style.display = "none";
+
+        // Epley formula
+        var oneRm = reps === 1 ? weight : weight * (1 + reps / 30);
+
+        setResult(out1rm, round(oneRm) + " " + unit);
+        setResult(out90, round(oneRm * 0.9) + " " + unit);
+        setResult(out80, round(oneRm * 0.8) + " " + unit);
+        setResult(out70, round(oneRm * 0.7) + " " + unit);
+        setResult(out60, round(oneRm * 0.6) + " " + unit);
+      }
+
+      [weightEl, unitEl, repsEl].forEach(function (el) {
+        el.addEventListener("input", calculate);
+        el.addEventListener("change", calculate);
+      });
+
+      calculate();
+    })();
+  </script>
+</body>
+</html>

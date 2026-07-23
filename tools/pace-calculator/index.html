@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <base href="https://hybridperformancecoaching.co.uk/" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="icon" sizes="192x192" href="assets/favicon-192.png" />
+  <link rel="icon" sizes="512x512" href="assets/favicon-512.png" />
+  <title>Pace Calculator | Hybrid Performance Coaching</title>
+  <meta name="description" content="Set a goal finish time and distance, and get the pace you need to hold per km and per mile, plus speed and halfway split." />
+  <meta property="og:title" content="Pace Calculator | Hybrid Performance Coaching" />
+  <meta property="og:description" content="Set a goal finish time and distance, and get the pace you need to hold per km and per mile, plus speed and halfway split." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://hybridperformancecoaching.co.uk/assets/og-image.jpg" />
+  <meta property="og:site_name" content="Hybrid Performance Coaching" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://hybridperformancecoaching.co.uk/assets/og-image.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <meta property="og:url" content="https://hybridperformancecoaching.co.uk/tools/pace-calculator/" />
+  <link rel="canonical" href="https://hybridperformancecoaching.co.uk/tools/pace-calculator/" />
+</head>
+<body data-page="pace-calculator">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-hero-dark">
+      <div class="container">
+        <span class="eyebrow">Free Tool</span>
+        <h1>Pace Calculator</h1>
+        <p>Set a goal finish time and distance, and get the pace you need to hold.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="tool-shell">
+          <div class="ath-card">
+            <div class="field">
+              <label for="distance">Distance</label>
+              <select id="distance">
+                <option value="5">5K</option>
+                <option value="10">10K</option>
+                <option value="21.0975">Half Marathon</option>
+                <option value="42.195">Marathon</option>
+                <option value="custom">Custom</option>
+              </select>
+              <div class="field" id="custom-distance-wrap" style="display:none; margin-top:0.7rem">
+                <label for="custom-distance">Custom distance (km)</label>
+                <input type="number" id="custom-distance" min="0" step="0.01" placeholder="e.g. 15" inputmode="decimal" />
+              </div>
+            </div>
+
+            <div class="field" style="margin-top:1.1rem">
+              <span class="field-label" id="goal-time-label">Goal finish time</span>
+              <div class="field-row" style="grid-template-columns:1fr 1fr 1fr" role="group" aria-labelledby="goal-time-label">
+                <input type="number" id="goal-h" placeholder="hh" min="0" inputmode="numeric" aria-label="Hours" />
+                <input type="number" id="goal-m" placeholder="mm" min="0" max="59" inputmode="numeric" aria-label="Minutes" />
+                <input type="number" id="goal-s" placeholder="ss" min="0" max="59" inputmode="numeric" aria-label="Seconds" />
+              </div>
+              <span class="hint small">Leave hours blank for shorter runs. 5K in 25:00 = mm 25.</span>
+            </div>
+          </div>
+
+          <div class="tool-output">
+            <span class="eyebrow">Your Target</span>
+            <div class="result-row">
+              <span class="k">Pace / km</span>
+              <span class="v is-empty" id="out-pace-km">&mdash;</span>
+            </div>
+            <div class="result-row">
+              <span class="k">Pace / mile</span>
+              <span class="v is-empty" id="out-pace-mile">&mdash;</span>
+            </div>
+            <div class="result-row">
+              <span class="k">Speed</span>
+              <span class="v is-empty" id="out-speed">&mdash;</span>
+            </div>
+            <div class="result-row">
+              <span class="k">Halfway split</span>
+              <span class="v is-empty" id="out-halfway">&mdash;</span>
+            </div>
+            <p class="small muted" id="out-note" style="margin-top:0.9rem">Enter a goal time above to see your target pace and splits.</p>
+          </div>
+        </div>
+
+        <div class="tool-notes">
+          <h3>How to read this</h3>
+          <ul class="ticks">
+            <li>Treat this pace as a target, not a rule, adjust for hills, heat, and how you feel on the day.</li>
+            <li>The halfway split assumes even pacing. A small positive split (running a touch slower in the second half) is completely normal.</li>
+            <li>Practise your goal pace in training before race day so it feels familiar, not just a number.</li>
+            <li>This is a general guide, not a training plan, use it alongside your actual sessions.</li>
+          </ul>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="btn-row">
+          <a class="btn btn--ghost" href="tools/">&larr; All tools</a>
+          <a class="btn btn--primary" href="bespoke/">Build this into a plan</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      var distanceEl = document.getElementById("distance");
+      var customDistanceWrap = document.getElementById("custom-distance-wrap");
+      var customDistanceEl = document.getElementById("custom-distance");
+
+      function getDistanceKm() {
+        if (distanceEl.value === "custom") {
+          return parseFloat(customDistanceEl.value);
+        }
+        return parseFloat(distanceEl.value);
+      }
+
+      distanceEl.addEventListener("change", function () {
+        customDistanceWrap.style.display = distanceEl.value === "custom" ? "block" : "none";
+      });
+      var hEl = document.getElementById("goal-h");
+      var mEl = document.getElementById("goal-m");
+      var sEl = document.getElementById("goal-s");
+      var outPaceKm = document.getElementById("out-pace-km");
+      var outPaceMile = document.getElementById("out-pace-mile");
+      var outSpeed = document.getElementById("out-speed");
+      var outHalfway = document.getElementById("out-halfway");
+      var outNote = document.getElementById("out-note");
+
+      function fmtPace(totalSeconds) {
+        var s = Math.round(totalSeconds);
+        var m = Math.floor(s / 60);
+        var r = s % 60;
+        return m + ":" + (r < 10 ? "0" + r : r);
+      }
+
+      function fmtTime(totalSeconds) {
+        var s = Math.round(totalSeconds);
+        var h = Math.floor(s / 3600);
+        var m = Math.floor((s % 3600) / 60);
+        var r = s % 60;
+        var mm = (h > 0 && m < 10) ? "0" + m : m;
+        var ss = r < 10 ? "0" + r : r;
+        return h > 0 ? (h + ":" + mm + ":" + ss) : (m + ":" + ss);
+      }
+
+      function setResult(el, text) {
+        el.textContent = text;
+        if (text === "\u2014") {
+          el.classList.add("is-empty");
+        } else {
+          el.classList.remove("is-empty");
+        }
+      }
+
+      function calculate() {
+        var h = parseInt(hEl.value, 10) || 0;
+        var m = parseInt(mEl.value, 10) || 0;
+        var s = parseInt(sEl.value, 10) || 0;
+        var totalSeconds = h * 3600 + m * 60 + s;
+        var distanceKm = getDistanceKm();
+
+        if (totalSeconds <= 0 || !distanceKm) {
+          setResult(outPaceKm, "\u2014");
+          setResult(outPaceMile, "\u2014");
+          setResult(outSpeed, "\u2014");
+          setResult(outHalfway, "\u2014");
+          outNote.style.display = "block";
+          return;
+        }
+
+        outNote.style.display = "none";
+
+        var distanceMiles = distanceKm / 1.60934;
+        var secPerKm = totalSeconds / distanceKm;
+        var secPerMile = totalSeconds / distanceMiles;
+        var speedKmh = distanceKm / (totalSeconds / 3600);
+
+        setResult(outPaceKm, fmtPace(secPerKm) + " /km");
+        setResult(outPaceMile, fmtPace(secPerMile) + " /mile");
+        setResult(outSpeed, speedKmh.toFixed(1) + " km/h");
+        setResult(outHalfway, fmtTime(totalSeconds / 2));
+      }
+
+      [distanceEl, hEl, mEl, sEl, customDistanceEl].forEach(function (el) {
+        el.addEventListener("input", calculate);
+        el.addEventListener("change", calculate);
+      });
+
+      calculate();
+    })();
+  </script>
+</body>
+</html>

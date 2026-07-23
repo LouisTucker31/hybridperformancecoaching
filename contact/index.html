@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <base href="https://hybridperformancecoaching.co.uk/" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="icon" sizes="192x192" href="assets/favicon-192.png" />
+  <link rel="icon" sizes="512x512" href="assets/favicon-512.png" />
+  <title>Contact | Hybrid Performance Coaching</title>
+  <meta name="description" content="Questions about bespoke plans, training plans, or the free tools? Send a message and I'll point you in the right direction." />
+  <meta property="og:title" content="Contact | Hybrid Performance Coaching" />
+  <meta property="og:description" content="Questions about bespoke plans, training plans, or the free tools? Send a message and I'll point you in the right direction." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://hybridperformancecoaching.co.uk/assets/og-image.jpg" />
+    <meta property="og:site_name" content="Hybrid Performance Coaching" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://hybridperformancecoaching.co.uk/assets/og-image.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <meta property="og:url" content="https://hybridperformancecoaching.co.uk/contact/" />
+  <link rel="canonical" href="https://hybridperformancecoaching.co.uk/contact/" />
+</head>
+<body data-page="contact">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-hero-photo">
+      <div class="page-hero-photo__bg">
+        <img src="assets/contact/contact-hero.webp" alt="Louis Tucker pushing off the wall in a pool" loading="eager" />
+        <div class="page-hero-photo__overlay"></div>
+      </div>
+      <div class="container page-hero-photo__content">
+        <span class="eyebrow">Contact</span>
+        <h1>Got a question? Send it over.</h1>
+        <p>Bespoke plans, training plans, tools, or just figuring out where to start, happy to point you in the right direction.</p>
+      </div>
+    </section>
+
+    <section class="section band">
+      <div class="container">
+        <div class="contact-shell">
+          <div class="ath-card">
+            <div class="form-success" id="form-success">Thanks, your message is on its way. I'll get back to you soon.</div>
+
+            <form class="form" id="contact-form" action="https://formspree.io/f/mqerdzdn" method="POST">
+              <div class="field-row">
+                <div class="field">
+                  <label for="name">Name <span class="required-mark">*</span></label>
+                  <input type="text" id="name" name="name" required />
+                </div>
+                <div class="field">
+                  <label for="email">Email <span class="required-mark">*</span></label>
+                  <input type="email" id="email" name="email" required />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="interest">I'm interested in <span class="required-mark">*</span></label>
+                <select id="interest" name="interest" required>
+                  <option value="" selected disabled>Select...</option>
+                  <option value="Bespoke Plan">Bespoke Plan</option>
+                  <option value="Training Plans">Training Plans</option>
+                  <option value="Free Tools">Free Tools</option>
+                  <option value="Something else">Something else</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="goal">Main goal <span class="hint">(optional)</span></label>
+                <input type="text" id="goal" name="goal" placeholder="e.g. first 10K while keeping my strength" />
+              </div>
+
+              <div class="contact-extra-fields" id="bespoke-fields" hidden>
+                <div class="field">
+                  <label for="event-date">Event date <span class="hint">(optional)</span></label>
+                  <input type="text" id="event-date" name="event_date" placeholder="e.g. 26 September 2026" />
+                </div>
+                <div class="field">
+                  <label for="current-training">Current training <span class="hint">(optional)</span></label>
+                  <input type="text" id="current-training" name="current_training" placeholder="e.g. lifting 3x a week, no running yet" />
+                </div>
+                <div class="field">
+                  <label for="availability">Gym / cardio availability <span class="hint">(optional)</span></label>
+                  <input type="text" id="availability" name="availability" placeholder="e.g. full gym, 4 days a week" />
+                </div>
+                <div class="field">
+                  <label for="injuries">Injuries or limitations <span class="hint">(optional)</span></label>
+                  <input type="text" id="injuries" name="injuries" placeholder="e.g. previous knee injury" />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="message">Message <span class="required-mark">*</span></label>
+                <textarea id="message" name="message" rows="5" placeholder="What would you like to know?" required></textarea>
+              </div>
+
+              <label class="consent-check">
+                <input type="checkbox" id="consent" name="consent" required />
+                <span>I agree to my information being used to respond to this enquiry, as set out in the <a href="privacy/" style="color:var(--accent)">Privacy Policy</a>.</span>
+              </label>
+
+              <p class="form-note">By submitting this form your details are sent via Formspree to respond to your message.</p>
+
+              <button type="submit" class="btn btn--primary btn--block">Send message</button>
+            </form>
+          </div>
+
+          <div class="contact-side">
+            <div class="ath-card">
+              <h3>Other ways to reach me</h3>
+              <ul class="ticks">
+                <li>Instagram: <a href="https://instagram.com/louist_training" target="_blank" rel="noopener noreferrer">follow me here</a></li>
+                <li>Strava: <a href="https://www.strava.com/athletes/5388808" target="_blank" rel="noopener noreferrer">follow my training</a></li>
+                <li>Email: <a href="mailto:louistucker@live.co.uk">louistucker@live.co.uk</a></li>
+              </ul>
+            </div>
+
+            <div class="ath-card">
+              <h3>Prefer to just start?</h3>
+              <p class="muted">You don't have to talk to me first. Try a free tool, or have a look at the bespoke plans.</p>
+              <div class="btn-row" style="justify-content:flex-start">
+                <a class="btn btn--ghost" href="tools/">Free tools</a>
+                <a class="btn btn--primary" href="bespoke/">Bespoke</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      var interestEl = document.getElementById("interest");
+      var bespokeFields = document.getElementById("bespoke-fields");
+
+      if (interestEl && bespokeFields) {
+        interestEl.addEventListener("change", function () {
+          bespokeFields.hidden = interestEl.value !== "Bespoke Plan";
+        });
+      }
+
+      var form = document.getElementById("contact-form");
+      var successEl = document.getElementById("form-success");
+      var submitBtn = form ? form.querySelector('button[type="submit"]') : null;
+      var sending = false;
+
+      if (form) form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (sending) return;
+        sending = true;
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Sending...";
+        }
+        var data = new FormData(form);
+
+        fetch(form.action, {
+          method: "POST",
+          body: data,
+          headers: { "Accept": "application/json" }
+        }).then(function (response) {
+          if (response.ok) {
+            form.hidden = true;
+            if (successEl) successEl.classList.add("show");
+          } else {
+            resetButton();
+            response.json().then(function (result) {
+              var msg = (result && result.errors)
+                ? result.errors.map(function (err) { return err.message; }).join(", ")
+                : "Something went wrong sending your message. Please try again or email me directly.";
+              alert(msg);
+            });
+          }
+        }).catch(function () {
+          resetButton();
+          alert("Something went wrong sending your message. Please try again or email me directly.");
+        });
+      });
+
+      function resetButton() {
+        sending = false;
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Send message";
+        }
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <base href="https://hybridperformancecoaching.co.uk/" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="icon" sizes="192x192" href="assets/favicon-192.png" />
+  <link rel="icon" sizes="512x512" href="assets/favicon-512.png" />
+  <title>Cycling Fuel Calculator | Hybrid Performance Coaching</title>
+  <meta name="description" content="Estimate the carbs and fluid you need for a long ride based on duration, intensity and conditions." />
+  <meta property="og:title" content="Cycling Fuel Calculator | Hybrid Performance Coaching" />
+  <meta property="og:description" content="Estimate the carbs and fluid you need for a long ride based on duration, intensity and conditions." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://hybridperformancecoaching.co.uk/assets/og-image.jpg" />
+  <meta property="og:site_name" content="Hybrid Performance Coaching" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://hybridperformancecoaching.co.uk/assets/og-image.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <meta property="og:url" content="https://hybridperformancecoaching.co.uk/tools/fuel-calculator/" />
+  <link rel="canonical" href="https://hybridperformancecoaching.co.uk/tools/fuel-calculator/" />
+</head>
+<body data-page="fuel-calculator">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-hero-dark">
+      <div class="container">
+        <span class="eyebrow">Free Tool</span>
+        <h1>Cycling Fuel Calculator</h1>
+        <p>Estimate carbs and fluid for a long ride based on duration, intensity and conditions.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="tool-shell">
+          <div class="ath-card">
+            <div class="field">
+              <span class="field-label" id="ride-duration-label">Ride duration</span>
+              <div class="field-row" style="grid-template-columns:1fr 1fr" role="group" aria-labelledby="ride-duration-label">
+                <input type="number" id="ride-h" placeholder="hh" min="0" inputmode="numeric" aria-label="Hours" />
+                <input type="number" id="ride-m" placeholder="mm" min="0" max="59" inputmode="numeric" aria-label="Minutes" />
+              </div>
+              <span class="hint small">e.g. a 3 hour ride: hh 3, mm 00.</span>
+            </div>
+
+            <div class="field" style="margin-top:1.1rem">
+              <label for="intensity">Intensity</label>
+              <select id="intensity">
+                <option value="30-500">Easy / Recovery</option>
+                <option value="60-650" selected>Steady / Tempo</option>
+                <option value="90-750">Hard / Race</option>
+              </select>
+            </div>
+
+            <div class="field" style="margin-top:1.1rem">
+              <label for="conditions">Conditions</label>
+              <select id="conditions">
+                <option value="0.85">Cool</option>
+                <option value="1" selected>Mild</option>
+                <option value="1.15">Warm</option>
+                <option value="1.3">Hot</option>
+              </select>
+            </div>
+
+            <div class="field" style="margin-top:1.1rem">
+              <label for="bodyweight">Body weight (kg) <span class="hint">(optional)</span></label>
+              <input type="number" id="bodyweight" placeholder="e.g. 75" min="0" inputmode="numeric" />
+            </div>
+
+            <button type="button" class="btn btn--primary btn--block" id="calc-btn" style="margin-top:1.3rem">Calculate fuelling</button>
+          </div>
+
+          <div class="tool-output">
+            <span class="eyebrow">Your Fuel Plan</span>
+            <span class="form-group-title">Per Hour</span>
+            <div class="result-row">
+              <span class="k">Carbs / hour</span>
+              <span class="v is-empty" id="out-carb-rate">&mdash;</span>
+            </div>
+            <div class="result-row result-row--tight">
+              <span class="k">Fluid / hour</span>
+              <span class="v is-empty" id="out-fluid-rate">&mdash;</span>
+            </div>
+            <hr class="tool-group-divider" />
+            <span class="form-group-title is-second">Whole Ride</span>
+            <div class="result-row">
+              <span class="k">Total carbs</span>
+              <span class="v is-empty" id="out-carb-total">&mdash;</span>
+            </div>
+            <div class="result-row">
+              <span class="k">Total fluid</span>
+              <span class="v is-empty" id="out-fluid-total">&mdash;</span>
+            </div>
+
+            <p class="small muted" id="out-note" style="margin-top:0.9rem">Enter a ride duration above to see your fuelling estimate.</p>
+          </div>
+        </div>
+
+        <div class="tool-notes">
+          <h3>How to read this</h3>
+          <ul class="ticks">
+            <li>Carbs can come from drink mix, gels, bars, bananas or real food, whatever sits well with you.</li>
+            <li>Rides under about 90 minutes usually just need water, with little to no extra carbs.</li>
+            <li>Start fuelling early rather than waiting until you feel empty.</li>
+            <li>This is a general guide, not medical or nutrition advice. Adjust it to your own experience.</li>
+          </ul>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="btn-row">
+          <a class="btn btn--ghost" href="tools/">&larr; All tools</a>
+          <a class="btn btn--primary" href="bespoke/">Build this into a plan</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      var hEl = document.getElementById("ride-h");
+      var mEl = document.getElementById("ride-m");
+      var intensityEl = document.getElementById("intensity");
+      var conditionsEl = document.getElementById("conditions");
+      var bodyweightEl = document.getElementById("bodyweight");
+      var calcBtn = document.getElementById("calc-btn");
+
+      var outCarbRate = document.getElementById("out-carb-rate");
+      var outFluidRate = document.getElementById("out-fluid-rate");
+      var outCarbTotal = document.getElementById("out-carb-total");
+      var outFluidTotal = document.getElementById("out-fluid-total");
+      var outNote = document.getElementById("out-note");
+
+      var REFERENCE_BODYWEIGHT = 70;
+
+      function setResult(el, text) {
+        el.textContent = text;
+        if (text === "\u2014") {
+          el.classList.add("is-empty");
+        } else {
+          el.classList.remove("is-empty");
+        }
+      }
+
+      function calculate() {
+        var h = parseInt(hEl.value, 10) || 0;
+        var m = parseInt(mEl.value, 10) || 0;
+        var durationHours = h + (m / 60);
+
+        if (durationHours <= 0) {
+          setResult(outCarbRate, "\u2014");
+          setResult(outFluidRate, "\u2014");
+          setResult(outCarbTotal, "\u2014");
+          setResult(outFluidTotal, "\u2014");
+          outNote.style.display = "block";
+          return;
+        }
+
+        outNote.style.display = "none";
+
+        var intensityParts = intensityEl.value.split("-");
+        var carbPerHour = parseInt(intensityParts[0], 10);
+        var baseFluidPerHour = parseInt(intensityParts[1], 10);
+        var conditionsMultiplier = parseFloat(conditionsEl.value);
+
+        var bodyweight = parseFloat(bodyweightEl.value);
+        var bodyweightFactor = (bodyweight && bodyweight > 0) ? (bodyweight / REFERENCE_BODYWEIGHT) : 1;
+
+        var fluidPerHour = Math.round(baseFluidPerHour * conditionsMultiplier * bodyweightFactor);
+        var totalCarbs = Math.round(carbPerHour * durationHours);
+        var totalFluidMl = Math.round(fluidPerHour * durationHours);
+        var totalFluidL = (totalFluidMl / 1000).toFixed(1);
+
+        setResult(outCarbRate, carbPerHour + " g/hr");
+        setResult(outFluidRate, fluidPerHour + " ml/hr");
+        setResult(outCarbTotal, totalCarbs + " g");
+        setResult(outFluidTotal, totalFluidL + " L");
+      }
+
+      [hEl, mEl, intensityEl, conditionsEl, bodyweightEl].forEach(function (el) {
+        el.addEventListener("input", calculate);
+        el.addEventListener("change", calculate);
+      });
+      calcBtn.addEventListener("click", calculate);
+
+      calculate();
+    })();
+  </script>
+</body>
+</html>
