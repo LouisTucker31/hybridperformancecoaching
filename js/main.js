@@ -72,6 +72,7 @@
     "fuel-calculator": "tools",
     "one-rep-max-calculator": "tools",
     "strava-prompt": "tools",
+    "triathlon-race-time-predictor": "tools",
     "5k-plan-for-lifters": "plans",
     "first-sprint-triathlon": "plans"
   };

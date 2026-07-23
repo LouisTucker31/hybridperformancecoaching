@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <base href="https://hybridperformancecoaching.co.uk/" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="icon" sizes="192x192" href="assets/favicon-192.png" />
+  <link rel="icon" sizes="512x512" href="assets/favicon-512.png" />
+  <title>Triathlon Race Time Predictor | Hybrid Performance Coaching</title>
+  <meta name="description" content="Estimate your triathlon finish time from your swim, bike and run paces, including transitions. Sprint, Olympic, 70.3 and full distance." />
+  <meta property="og:title" content="Triathlon Race Time Predictor | Hybrid Performance Coaching" />
+  <meta property="og:description" content="Estimate your triathlon finish time from your swim, bike and run paces, including transitions. Sprint, Olympic, 70.3 and full distance." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://hybridperformancecoaching.co.uk/assets/og-image.jpg" />
+  <meta property="og:site_name" content="Hybrid Performance Coaching" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://hybridperformancecoaching.co.uk/assets/og-image.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" /></noscript>
+  <link rel="stylesheet" href="css/style.css" />
+  <meta property="og:url" content="https://hybridperformancecoaching.co.uk/tools/triathlon-race-time-predictor/" />
+  <link rel="canonical" href="https://hybridperformancecoaching.co.uk/tools/triathlon-race-time-predictor/" />
+</head>
+<body data-page="triathlon-race-time-predictor">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-hero-dark">
+      <div class="container">
+        <span class="eyebrow">Free Tool</span>
+        <h1>Triathlon Race Time Predictor</h1>
+        <p>Enter your swim, bike and run paces and get a realistic finish time, including transitions.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="tool-shell">
+          <div class="ath-card">
+            <div class="field">
+              <label for="tri-distance">Race distance</label>
+              <select id="tri-distance">
+                <option value="sprint">Sprint (750m / 20km / 5km)</option>
+                <option value="olympic">Olympic (1.5km / 40km / 10km)</option>
+                <option value="middle">Middle / 70.3 (1.9km / 90km / 21.1km)</option>
+                <option value="full">Full / 140.6 (3.8km / 180km / 42.2km)</option>
+                <option value="custom">Custom</option>
+              </select>
+            </div>
+
+            <div id="custom-distances" hidden>
+              <div class="field" style="margin-top:1.1rem">
+                <label for="custom-swim">Swim distance (m)</label>
+                <input type="number" id="custom-swim" placeholder="e.g. 750" min="0" step="10" inputmode="numeric" />
+              </div>
+              <div class="field" style="margin-top:1.1rem">
+                <label for="custom-bike">Bike distance (km)</label>
+                <input type="number" id="custom-bike" placeholder="e.g. 20" min="0" step="0.1" inputmode="decimal" />
+              </div>
+              <div class="field" style="margin-top:1.1rem">
+                <label for="custom-run">Run distance (km)</label>
+                <input type="number" id="custom-run" placeholder="e.g. 5" min="0" step="0.1" inputmode="decimal" />
+              </div>
+            </div>
+
+            <span class="form-group-title is-second">Your paces</span>
+
+            <div class="field">
+              <span class="field-label" id="swim-pace-label">Swim pace (per 100m)</span>
+              <div class="field-row" style="grid-template-columns:1fr 1fr" role="group" aria-labelledby="swim-pace-label">
+                <input type="number" id="swim-m" placeholder="mm" min="0" inputmode="numeric" aria-label="Swim pace minutes" />
+                <input type="number" id="swim-s" placeholder="ss" min="0" max="59" inputmode="numeric" aria-label="Swim pace seconds" />
+              </div>
+              <span class="hint small">e.g. 2:10 per 100m: mm 2, ss 10.</span>
+            </div>
+
+            <div class="field" style="margin-top:1.1rem">
+              <label for="bike-speed">Bike speed (km/h)</label>
+              <input type="number" id="bike-speed" placeholder="e.g. 28" min="0" step="0.1" inputmode="decimal" />
+            </div>
+
+            <div class="field" style="margin-top:1.1rem">
+              <span class="field-label" id="run-pace-label">Run pace (per km)</span>
+              <div class="field-row" style="grid-template-columns:1fr 1fr" role="group" aria-labelledby="run-pace-label">
+                <input type="number" id="run-m" placeholder="mm" min="0" inputmode="numeric" aria-label="Run pace minutes" />
+                <input type="number" id="run-s" placeholder="ss" min="0" max="59" inputmode="numeric" aria-label="Run pace seconds" />
+              </div>
+              <span class="hint small">Use a realistic pace off the bike, not your fresh 5K pace.</span>
+            </div>
+
+            <span class="form-group-title is-second">Transitions</span>
+
+            <div class="field">
+              <span class="field-label" id="transition-label">T1 and T2 (minutes)</span>
+              <div class="field-row" style="grid-template-columns:1fr 1fr" role="group" aria-labelledby="transition-label">
+                <input type="number" id="t1" placeholder="T1" min="0" step="0.5" inputmode="decimal" aria-label="T1 minutes, swim to bike" />
+                <input type="number" id="t2" placeholder="T2" min="0" step="0.5" inputmode="decimal" aria-label="T2 minutes, bike to run" />
+              </div>
+              <span class="hint small">Leave blank to use typical times for the distance.</span>
+            </div>
+          </div>
+
+          <div class="tool-output">
+            <span class="eyebrow">Your Predicted Race</span>
+            <span class="form-group-title">Finish Time</span>
+            <div class="result-row">
+              <span class="k">Total</span>
+              <span class="v is-empty" id="out-total">&mdash;</span>
+            </div>
+
+            <hr class="tool-group-divider" />
+            <span class="form-group-title is-second">Leg Breakdown</span>
+            <div class="result-row">
+              <span class="k">Swim</span>
+              <span class="v is-empty" id="out-swim">&mdash;</span>
+            </div>
+            <div class="result-row">
+              <span class="k">T1</span>
+              <span class="v is-empty" id="out-t1">&mdash;</span>
+            </div>
+            <div class="result-row">
+              <span class="k">Bike</span>
+              <span class="v is-empty" id="out-bike">&mdash;</span>
+            </div>
+            <div class="result-row">
+              <span class="k">T2</span>
+              <span class="v is-empty" id="out-t2">&mdash;</span>
+            </div>
+            <div class="result-row">
+              <span class="k">Run</span>
+              <span class="v is-empty" id="out-run">&mdash;</span>
+            </div>
+
+            <p class="small muted" id="tool-msg" style="margin-top:1rem">Enter your paces above to see your predicted finish time.</p>
+          </div>
+        </div>
+
+        <div class="tool-notes">
+          <h3>How to read this</h3>
+          <ul class="ticks">
+            <li>This predicts from the paces you enter, so the result is only as realistic as your inputs. Use paces you can actually hold on race day, not personal bests.</li>
+            <li>Most people run slower off the bike than they do fresh. If you are unsure, add 20 to 40 seconds per km to your standalone run pace for the estimate.</li>
+            <li>Transitions count towards your official time. The defaults here are typical, but they vary with your setup, the size of the transition area, and whether it is a wetsuit swim.</li>
+            <li>Bike speed is the biggest single lever on your finish time, particularly at longer distances, because you spend the most time on it.</li>
+            <li>This is a prediction, not a pacing plan. Going out too hard on the bike is the most common way to lose more time on the run than you gained.</li>
+          </ul>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="btn-row">
+          <a class="btn btn--ghost" href="tools/">&larr; All tools</a>
+          <a class="btn btn--primary" href="plans/first-sprint-triathlon/">See the Sprint Triathlon Plan</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      var PRESETS = {
+        sprint:  { swim: 750,  bike: 20,  run: 5,       t1: 3, t2: 2 },
+        olympic: { swim: 1500, bike: 40,  run: 10,      t1: 4, t2: 3 },
+        middle:  { swim: 1900, bike: 90,  run: 21.0975, t1: 6, t2: 4 },
+        full:    { swim: 3800, bike: 180, run: 42.195,  t1: 9, t2: 7 }
+      };
+
+      var distanceEl = document.getElementById("tri-distance");
+      var customWrap = document.getElementById("custom-distances");
+      var customSwim = document.getElementById("custom-swim");
+      var customBike = document.getElementById("custom-bike");
+      var customRun = document.getElementById("custom-run");
+
+      var swimM = document.getElementById("swim-m");
+      var swimS = document.getElementById("swim-s");
+      var bikeSpeed = document.getElementById("bike-speed");
+      var runM = document.getElementById("run-m");
+      var runS = document.getElementById("run-s");
+      var t1El = document.getElementById("t1");
+      var t2El = document.getElementById("t2");
+
+      var outTotal = document.getElementById("out-total");
+      var outSwim = document.getElementById("out-swim");
+      var outT1 = document.getElementById("out-t1");
+      var outBike = document.getElementById("out-bike");
+      var outT2 = document.getElementById("out-t2");
+      var outRun = document.getElementById("out-run");
+      var msgEl = document.getElementById("tool-msg");
+
+      function num(el) {
+        var v = parseFloat(el.value);
+        return isNaN(v) ? 0 : v;
+      }
+
+      function setResult(el, value) {
+        if (value === null) {
+          el.textContent = "\u2014";
+          el.classList.add("is-empty");
+        } else {
+          el.textContent = value;
+          el.classList.remove("is-empty");
+        }
+      }
+
+      function clearAll() {
+        [outTotal, outSwim, outT1, outBike, outT2, outRun].forEach(function (el) {
+          setResult(el, null);
+        });
+      }
+
+      function formatTime(totalSeconds) {
+        var s = Math.round(totalSeconds);
+        var h = Math.floor(s / 3600);
+        var m = Math.floor((s % 3600) / 60);
+        var sec = s % 60;
+        if (h > 0) {
+          return h + ":" + String(m).padStart(2, "0") + ":" + String(sec).padStart(2, "0");
+        }
+        return m + ":" + String(sec).padStart(2, "0");
+      }
+
+      function getDistances() {
+        var key = distanceEl.value;
+        if (key === "custom") {
+          return {
+            swim: num(customSwim),
+            bike: num(customBike),
+            run: num(customRun),
+            t1: 3,
+            t2: 2
+          };
+        }
+        return PRESETS[key];
+      }
+
+      function calculate() {
+        var d = getDistances();
+
+        var swimPaceSec = num(swimM) * 60 + num(swimS);
+        var bikeKph = num(bikeSpeed);
+        var runPaceSec = num(runM) * 60 + num(runS);
+
+        if (!d.swim || !d.bike || !d.run) {
+          clearAll();
+          msgEl.textContent = "Enter your race distances above to see your predicted finish time.";
+          return;
+        }
+
+        if (swimPaceSec <= 0 || bikeKph <= 0 || runPaceSec <= 0) {
+          clearAll();
+          msgEl.textContent = "Enter your swim pace, bike speed and run pace above to see your predicted finish time.";
+          return;
+        }
+
+        var swimSec = (d.swim / 100) * swimPaceSec;
+        var bikeSec = (d.bike / bikeKph) * 3600;
+        var runSec = d.run * runPaceSec;
+
+        var t1Min = t1El.value === "" ? d.t1 : num(t1El);
+        var t2Min = t2El.value === "" ? d.t2 : num(t2El);
+        var t1Sec = t1Min * 60;
+        var t2Sec = t2Min * 60;
+
+        var total = swimSec + t1Sec + bikeSec + t2Sec + runSec;
+
+        setResult(outTotal, formatTime(total));
+        setResult(outSwim, formatTime(swimSec));
+        setResult(outT1, formatTime(t1Sec));
+        setResult(outBike, formatTime(bikeSec));
+        setResult(outT2, formatTime(t2Sec));
+        setResult(outRun, formatTime(runSec));
+
+        msgEl.textContent = "Transitions " + (t1El.value === "" && t2El.value === "" ? "use typical times for this distance." : "use the times you entered.");
+      }
+
+      distanceEl.addEventListener("change", function () {
+        customWrap.hidden = distanceEl.value !== "custom";
+        calculate();
+      });
+
+      [customSwim, customBike, customRun, swimM, swimS, bikeSpeed, runM, runS, t1El, t2El].forEach(function (el) {
+        el.addEventListener("input", calculate);
+        el.addEventListener("change", calculate);
+      });
+
+      calculate();
+    })();
+  </script>
+</body>
+</html>

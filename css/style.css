@@ -782,6 +782,33 @@ body[data-page="strava-prompt"] .link-toggle:hover {
 }
 
 /* ==========================================================
+   Triathlon Race Time Predictor - Bold Athletic
+   ========================================================== */
+body[data-page="triathlon-race-time-predictor"] .btn { border-radius: 0; }
+body[data-page="triathlon-race-time-predictor"] .ath-card,
+body[data-page="triathlon-race-time-predictor"] .tool-output {
+  background: var(--accent-tint);
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  box-shadow: none;
+}
+body[data-page="triathlon-race-time-predictor"] .field select,
+body[data-page="triathlon-race-time-predictor"] .field input {
+  border-radius: 0;
+}
+body[data-page="triathlon-race-time-predictor"] .form-group-title {
+  color: var(--ink);
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  margin-top: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+body[data-page="triathlon-race-time-predictor"] .tool-output {
+  position: static;
+}
+
+/* ==========================================================
    One-Rep Max Calculator - Bold Athletic
    ========================================================== */
 body[data-page="one-rep-max-calculator"] .btn { border-radius: 0; }
