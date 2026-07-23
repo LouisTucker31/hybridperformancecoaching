@@ -312,6 +312,7 @@ main { flex: 1; }
 .form-note { font-size: var(--fs-xs); color: var(--ink-faint); }
 .form-group-title { font-size: var(--fs-xs); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); margin: 0 0 0.2rem; }
 .form-group-title.is-second { margin-top: 1.4rem; padding-top: 1.4rem; border-top: 1px solid var(--line); }
+.tool-group-divider + .form-group-title.is-second { border-top: none; padding-top: 0; }
 .form-success { display: none; padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: var(--accent-soft); color: var(--accent-dark); font-size: var(--fs-sm); font-weight: 500; margin-bottom: 1rem; }
 .form-success.show { display: block; }
 
