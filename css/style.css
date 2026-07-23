@@ -804,6 +804,22 @@ body[data-page="triathlon-race-time-predictor"] .form-group-title {
   margin-top: 1.1rem;
   margin-bottom: 0.5rem;
 }
+body[data-page="triathlon-race-time-predictor"] .ath-card .form-group-title.is-second {
+  margin-top: 1.75rem;
+  padding-top: 1.4rem;
+}
+body[data-page="triathlon-race-time-predictor"] .ath-card .field + .field,
+body[data-page="triathlon-race-time-predictor"] .ath-card .form-group-title + .field {
+  margin-top: 1.1rem;
+}
+body[data-page="triathlon-race-time-predictor"] .tool-output .form-group-title {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+body[data-page="triathlon-race-time-predictor"] .tool-output .form-group-title.is-second {
+  margin-top: 0;
+}
 body[data-page="triathlon-race-time-predictor"] .tool-output {
   position: static;
 }
