@@ -373,7 +373,7 @@ main { flex: 1; }
 .cred-group__label { font-size: var(--fs-xs); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
 @media (max-width: 720px) {
   .about-media { grid-template-columns: 1fr; }
-  .about-media__photo { min-height: 0; aspect-ratio: 3 / 4; order: -1; }
+  .about-media__photo { min-height: 400px; order: -1; }
   .about-media__photo img { object-position: 50% 12%; }
 }
 
