@@ -1,5 +1,5 @@
 /* =========================================================
-   Hybrid Performance Coaching - core
+   Hybrid Performance - core
    Header/footer embedded so the site works opened directly
    from file:// in a browser, and on GitHub Pages.
    Paths are base-relative, see the <base> tag in each page's <head>.
@@ -55,7 +55,7 @@
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
         </a></li>
       </ul>
-      <span class="footer-meta">&copy; <span data-year></span> Hybrid Performance Coaching</span>
+      <span class="footer-meta">&copy; <span data-year></span> Hybrid Performance</span>
     </div>
   </div>
 </footer>`;
